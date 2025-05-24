@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Edulance{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card card p-4">
+        <div class="card-body">
+            <h2 class="text-center mb-4">Login to Edulance</h2>
+
+            <!-- Google OAuth Button -->
+            <button onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'"
+                class="oauth-btn google-btn">
+                <i class="fab fa-google"></i> Login with Google
+            </button>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <!-- Email Login Form -->
+            <form method="post" action="{% url 'users:login' %}">
+                {% csrf_token %}
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    Invalid email or password. Please try again.
+                </div>
+                {% endif %}
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember">
+                    <label class="form-check-label" for="remember">Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+
+            <!-- Links -->
+            <div class="text-center mt-3">
+                <a href="{% url 'users:register' %}" class="text-primary">Don't have an account? Register</a>
+                <br>
+                <a href="#" class="text-secondary">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

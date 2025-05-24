@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Edulance - Education Freelancing Platform{% endblock %}
+
+{% block content %}
+<div class="row align-items-center">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4">Empower Your Educational Journey</h1>
+        <p class="lead mb-4">
+            Edulance connects educators, students, and professionals on a collaborative platform for learning, tutoring,
+            and project development.
+        </p>
+        <div class="d-grid gap-2 d-md-flex">
+            {% if user.is_authenticated %}
+            <a href="{% url 'users:profile' %}" class="btn btn-primary btn-lg px-4 me-md-2">
+                <i class="fas fa-user-circle me-2"></i>My Profile
+            </a>
+            {% else %}
+            <a href="{% url 'users:register' %}" class="btn btn-primary btn-lg px-4 me-md-2">
+                <i class="fas fa-user-plus me-2"></i>Get Started
+            </a>
+            <a href="{% url 'users:login' %}" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="fas fa-sign-in-alt me-2"></i>Login
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <img src="https://placehold.co/600x400" alt="Education" class="img-fluid rounded shadow-lg">
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row text-center">
+    <div class="col-12">
+        <h2 class="mb-4">Why Choose Edulance?</h2>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="mb-3">
+                    <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                </div>
+                <h4 class="card-title">Learn from Experts</h4>
+                <p class="card-text">Connect with industry professionals and experienced educators who can guide you
+                    through your learning journey.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="mb-3">
+                    <i class="fas fa-chalkboard-teacher fa-3x text-primary"></i>
+                </div>
+                <h4 class="card-title">Share Your Knowledge</h4>
+                <p class="card-text">Offer your expertise to those who need it. Create courses, provide tutoring, or
+                    mentor aspiring professionals.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="mb-3">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
+                </div>
+                <h4 class="card-title">Collaborate on Projects</h4>
+                <p class="card-text">Find teammates for educational projects, research, or innovative ideas. Build your
+                    portfolio while learning.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="row text-center my-5">
+    <div class="col-12">
+        <h2 class="mb-4">Ready to Start Your Journey?</h2>
+        <p class="lead mb-4">
+            Join Edulance today and take the first step towards empowering your education or sharing your expertise with
+            the world.
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
+            {% if user.is_authenticated %}
+            <a href="{% url 'users:profile' %}" class="btn btn-primary btn-lg px-4">
+                <i class="fas fa-user-circle me-2"></i>Go to Profile
+            </a>
+            {% else %}
+            <a href="{% url 'users:register' %}" class="btn btn-primary btn-lg px-4">
+                <i class="fas fa-user-plus me-2"></i>Sign Up Now
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

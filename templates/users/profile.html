@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile - Edulance{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-header {
+        background: linear-gradient(45deg, var(--primary-color), #6b93e6);
+        color: white;
+        padding: 2rem;
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .profile-tabs .nav-link {
+        color: var(--secondary-color);
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 1rem 1.5rem;
+    }
+
+    .profile-tabs .nav-link.active {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        background: transparent;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+    }
+
+    .profile-picture-preview {
+        max-width: 150px;
+        max-height: 150px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-4">
+            <div class="profile-header text-center">
+                <div class="avatar-wrapper mb-3">
+                    <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}https://via.placeholder.com/150{% endif %}"
+                        alt="Profile Picture" class="avatar">
+                    <label for="profile_picture" class="avatar-upload">
+                        <i class="fas fa-camera"></i>
+                    </label>
+                </div>
+                <h3 class="mb-0">{{ user.get_full_name }}</h3>
+                <p class="mb-0">{{ user.email }}</p>
+            </div>
+
+            <div class="card-body">
+                <!-- Tabs -->
+                <ul class="nav nav-tabs profile-tabs mb-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#security">Security</a>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Profile Tab -->
+                    <div class="tab-pane fade show active" id="profile">
+                        <form id="profile-form" enctype="multipart/form-data">
+                            <input type="file" id="profile_picture" name="profile_picture" class="d-none"
+                                accept="image/*">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="first_name" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name"
+                                        value="{{ user.first_name }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="last_name" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name"
+                                        value="{{ user.last_name }}" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="bio" class="form-label">Bio</label>
+                                <textarea class="form-control" id="bio" name="bio" rows="4">{{ user.bio }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="github_profile" class="form-label">GitHub Profile</label>
+                                <input type="url" class="form-control" id="github_profile" name="github_profile"
+                                    value="{{ user.github_profile }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone_number" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone_number" name="phone_number"
+                                    value="{{ user.phone_number }}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Skills Tab -->
+                    <div class="tab-pane fade" id="skills">
+                        <form id="skills-form">
+                            <div class="mb-3">
+                                <label class="form-label">Select Skills</label>
+                                <select class="form-select" name="skills[]" multiple size="6">
+                                    {% for skill in skills %}
+                                    <option value="{{ skill.id }}" {% if skill in user.skills.all %}selected{% endif %}>
+                                        {{ skill.name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Selected Skills:</h6>
+                                {% for skill in user.skills.all %}
+                                <span class="skill-badge">{{ skill.name }}</span>
+                                {% empty %}
+                                <p class="text-muted">No skills selected yet.</p>
+                                {% endfor %}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Skills</button>
+                        </form>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-pane fade" id="security">
+                        <form id="password-form">
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="current_password"
+                                    name="current_password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="new_password" name="new_password"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirm_password"
+                                    name="confirm_password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function () {
+        // Profile Picture Preview
+        $('#profile_picture').change(function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Profile Form Submission
+        $('#profile-form').submit(function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            $.ajax({
+                url: '{% url "users:update_profile" %}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        showNotification(response.success, 'success');
+                        // Update displayed values
+                        $('.avatar').attr('src', $('.avatar').attr('src')); // Refresh profile picture
+                    } else {
+                        showNotification(response.error, 'error');
+                    }
+                },
+                error: function () {
+                    showNotification('An error occurred while updating profile', 'error');
+                }
+            });
+        });
+
+        // Skills Form Submission
+        $('#skills-form').submit(function (e) {
+            e.preventDefault();
+            const formData = $(this).serialize();
+
+            $.ajax({
+                url: '{% url "users:update_profile" %}',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        showNotification(response.success, 'success');
+                        // Refresh skills badges
+                        location.reload();
+                    } else {
+                        showNotification(response.error, 'error');
+                    }
+                },
+                error: function () {
+                    showNotification('An error occurred while updating skills', 'error');
+                }
+            });
+        });
+
+        // Password Form Submission
+        $('#password-form').submit(function (e) {
+            e.preventDefault();
+            const formData = $(this).serialize();
+
+            $.ajax({
+                url: '{% url "users:change_password" %}',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        showNotification(response.success, 'success');
+                        $('#password-form')[0].reset();
+                    } else {
+                        showNotification(response.error, 'error');
+                    }
+                },
+                error: function () {
+                    showNotification('An error occurred while changing password', 'error');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

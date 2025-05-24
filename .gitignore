@@ -23,3 +23,6 @@ static_root/
 .DS_Store
 
 *.rdb
+
+*.sqlite3
+*.log
