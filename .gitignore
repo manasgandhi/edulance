@@ -25,4 +25,5 @@ static_root/
 *.rdb
 
 *.sqlite3
-*.log
+
+expense.log

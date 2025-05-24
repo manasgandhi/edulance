@@ -182,6 +182,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     "https://www.googleapis.com/auth/userinfo.email",
     "https://www.googleapis.com/auth/userinfo.profile",
 ]
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ["picture"]
+
 SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = "http://localhost:8000/oauth/google/callback/"
 # Login/Logout URLs
 LOGIN_URL = "users:login"

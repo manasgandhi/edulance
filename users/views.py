@@ -55,6 +55,16 @@ from social_django.utils import psa
 
 from .models import User, Skill
 import uuid
+from social_django.models import UserSocialAuth
+
+
+def get_user_avatar(user):
+    try:
+        social = user.social_auth.get(provider="google-oauth2")
+        return social.extra_data["picture"]
+    except UserSocialAuth.DoesNotExist:
+        return None
+
 
 logger = logging.getLogger(__name__)
 
@@ -158,8 +168,11 @@ def logout_view(request):
 @login_required
 def profile_view(request):
     """User profile view"""
+    avatar_url = get_user_avatar(request.user)
     skills = Skill.objects.all()
-    return render(request, "users/profile.html", {"skills": skills})
+    return render(
+        request, "users/profile.html", {"skills": skills, "avatar_url": avatar_url}
+    )
 
 
 def verify_email_view(request, uidb64, token):
