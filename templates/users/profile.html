@@ -34,6 +34,141 @@
         max-height: 150px;
         object-fit: cover;
     }
+     .resume-upload-container {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 2px dashed var(--primary-color);
+        transition: all 0.3s ease;
+    }
+
+    .resume-upload-container:hover {
+        border-color: #1cc88a;
+        box-shadow: 0 8px 25px rgba(78, 115, 223, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .upload-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .upload-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .file-input-wrapper {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .custom-file-input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .file-input-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-height: 60px;
+    }
+
+    .file-input-display:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .file-input-display i {
+        margin-right: 0.5rem;
+    }
+
+    .file-selected {
+        background: #1cc88a !important;
+        color: white !important;
+        border-color: #1cc88a !important;
+    }
+
+    .upload-btn-custom {
+        background: linear-gradient(45deg, var(--primary-color), #6b93e6);
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3);
+        width: 100%;
+    }
+
+    .upload-btn-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(78, 115, 223, 0.4);
+        color: white;
+    }
+
+    .upload-btn-custom:disabled {
+        background: #858796;
+        cursor: not-allowed;
+    }
+
+    .skills-result {
+        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        border: none;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .skills-header {
+        color: #1cc88a;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .skills-header i {
+        margin-right: 0.5rem;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .skill-tag {
+        background: linear-gradient(45deg, #1cc88a, #23d160);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(28, 200, 138, 0.3);
+    }
+
+    .file-info {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background: rgba(78, 115, 223, 0.1);
+        border-radius: 5px;
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        display: none;
+    }
 </style>
 {% endblock %}
 
@@ -111,7 +246,45 @@
                     </div>
 
                     <!-- Skills Tab -->
-                    <div class="tab-pane fade" id="skills">
+                    <div class="tab-pane fade show active" id="skills">
+                        <div class="resume-upload-container">
+                            <div class="upload-header">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <h5 style="color: var(--primary-color); font-weight: 600;">Upload Your Resume</h5>
+                                <p class="text-muted mb-0">Upload PDF to automatically extract skills</p>
+                            </div>
+
+                            <form action="/upload_resume/" method="POST" enctype="multipart/form-data" id="resumeForm">
+                                {% csrf_token %}
+                                
+                                <div class="file-input-wrapper">
+                                    <input type="file" id="resume" name="resume" class="custom-file-input" accept=".pdf" required>
+                                    <div class="file-input-display" id="fileDisplay">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span id="fileText">Choose PDF file</span>
+                                    </div>
+                                    <div class="file-info" id="fileInfo"></div>
+                                </div>
+
+                                <button type="submit" class="btn upload-btn-custom" id="uploadButton" disabled>
+                                    <i class="fas fa-upload me-2"></i>Extract Skills
+                                </button>
+                            </form>
+                        </div>
+
+                        {% if extracted_skills %}
+                        <div class="skills-result">
+                            <div class="skills-header">
+                                <i class="fas fa-magic"></i>
+                                Skills Extracted from Your Resume
+                            </div>
+                            <div class="skill-tags">
+                                {% for skill in data %}
+                                    <span class="skill-tag">{{ skill }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
                         <form id="skills-form">
                             <div class="mb-3">
                                 <label class="form-label">Select Skills</label>
@@ -251,5 +424,33 @@
             });
         });
     });
+
+
+    document.getElementById('resume').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const fileDisplay = document.getElementById('fileDisplay');
+    const fileText = document.getElementById('fileText');
+    const fileInfo = document.getElementById('fileInfo');
+    const uploadButton = document.getElementById('uploadButton');
+    
+    if (file) {
+        if (file.type !== 'application/pdf') {
+            alert('Please select a PDF file only.');
+            this.value = '';
+            return;
+        }
+        
+        fileDisplay.classList.add('file-selected');
+        fileText.innerHTML = '<i class="fas fa-check me-2"></i>File Selected';
+        fileInfo.textContent = file.name;
+        fileInfo.style.display = 'block';
+        uploadButton.disabled = false;
+    } else {
+        fileDisplay.classList.remove('file-selected');
+        fileText.innerHTML = '<i class="fas fa-file-pdf me-2"></i>Choose PDF file';
+        fileInfo.style.display = 'none';
+        uploadButton.disabled = true;
+    }
+});
 </script>
 {% endblock %}
