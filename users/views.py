@@ -58,6 +58,8 @@ import uuid
 from social_django.models import UserSocialAuth
 
 
+from .resume import process_resume_file
+
 def get_user_avatar(user):
     try:
         social = user.social_auth.get(provider="google-oauth2")
@@ -309,3 +311,66 @@ def google_oauth_callback(request, backend):
         user.save()
 
     return redirect("users:profile")
+
+# @login_required
+# def upload_resume(request):
+#     if request.method == 'POST' and request.FILES.get('resume'):
+#         resume = request.FILES['resume']
+#         # user = request.user
+#         # user.resume = resume
+#         # user.save()
+#         data = process_resume_file(resume)
+#         print(data)
+#         return redirect('users:profile') 
+    
+
+#     return render(request, 'users/profile.html')
+
+
+import tempfile
+import os
+
+@login_required
+def upload_resume(request):
+    if request.method == 'POST' and request.FILES.get('resume'):
+        resume_file = request.FILES['resume']
+
+        # Save to a temporary file
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
+            for chunk in resume_file.chunks():
+                temp_file.write(chunk)
+            temp_file_path = temp_file.name
+
+        try:
+            # Process resume using the file path
+            extracted_skills = process_resume_file(temp_file_path)
+            print(f"Extracted skills: {extracted_skills}")
+        except Exception as e:
+            print(f"Error processing resume: {e}")
+            extracted_skills = []
+        finally:
+            # Clean up the temporary file
+            os.remove(temp_file_path)
+        
+        # Get all skills for the template
+        avatar_url = get_user_avatar(request.user)
+        skills = Skill.objects.all()
+        
+        # Pass the extracted skills to the template
+        context = {
+            'skills': skills, 
+            'avatar_url': avatar_url,
+            'extracted_skills': extracted_skills,  # This will be available in template
+            'data': extracted_skills  # Also available as 'data' if you prefer
+        }
+        
+        return render(request, 'users/profile.html', context)
+
+    # If GET request or no file uploaded
+    avatar_url = get_user_avatar(request.user)
+    skills = Skill.objects.all()
+    context = {
+        'skills': skills, 
+        'avatar_url': avatar_url
+    }
+    return render(request, 'users/profile.html', context)

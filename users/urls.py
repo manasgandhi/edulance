@@ -60,4 +60,5 @@ urlpatterns = [
         api_views.UserAPIViewSet.as_view({"post": "verify_email"}),
         name="api_verify_email",
     ),
+    path("upload_resume/", views.upload_resume, name="upload_resume"),
 ]
