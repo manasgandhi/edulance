@@ -26,4 +26,4 @@ static_root/
 
 *.sqlite3
 
-expense.log
+*.log
