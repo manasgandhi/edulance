@@ -26,10 +26,8 @@ class UserSerializer(serializers.ModelSerializer):
             "bio",
             "github_profile",
             "skills",
-            "email_verified",
             "phone_number",
         ]
-        read_only_fields = ["email_verified"]
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -56,18 +54,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, attrs):
-        # Validate that passwords match
-        if attrs["password"] != attrs["confirm_password"]:
-            raise serializers.ValidationError(
-                {"password": "Password fields didn't match."}
-            )
-
-        # Validate password complexity
-        try:
-            validate_password(attrs["password"])
-        except ValidationError as e:
-            raise serializers.ValidationError({"password": list(e.messages)})
-
         # Clean inputs to prevent XSS
         for field in ["username", "first_name", "last_name", "email"]:
             if field in attrs:
@@ -76,10 +62,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        # Remove confirm_password from the data as we don't save it
-        validated_data.pop("confirm_password")
-
-        # Create the user
         user = User(**validated_data)
         user.set_password(validated_data["password"])
         user.save()
@@ -164,17 +146,10 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         # Remove password fields from validated_data
-        current_password = validated_data.pop("current_password", None)
-        new_password = validated_data.pop("new_password", None)
-        validated_data.pop("confirm_new_password", None)
 
         # Update instance with remaining validated_data
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
-
-        # Set new password if provided
-        if new_password:
-            instance.set_password(new_password)
 
         instance.save()
         return instance

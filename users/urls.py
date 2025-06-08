@@ -24,16 +24,16 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
     path("profile/", views.profile_view, name="profile"),
-    path(
-        "verify-email/<str:uidb64>/<str:token>/",
-        views.verify_email_view,
-        name="verify_email",
-    ),
+    # path(
+    #     "verify-email/<str:uidb64>/<str:token>/",
+    #     views.verify_email_view,
+    #     name="verify_email",
+    # ),
     # AJAX endpoints for web interface
     path("update-profile/", views.ProfileUpdateView.as_view(), name="update_profile"),
-    path(
-        "change-password/", views.PasswordChangeView.as_view(), name="change_password"
-    ),
+    # path(
+    #     "change-password/", views.PasswordChangeView.as_view(), name="change_password"
+    # ),
     # OAuth callback
     path(
         "oauth/google/callback/",
@@ -55,10 +55,10 @@ urlpatterns = [
     path(
         "api/auth/me/", api_views.UserAPIViewSet.as_view({"get": "me"}), name="api_me"
     ),
-    path(
-        "api/auth/verify-email/",
-        api_views.UserAPIViewSet.as_view({"post": "verify_email"}),
-        name="api_verify_email",
-    ),
+    # path(
+    #     "api/auth/verify-email/",
+    #     api_views.UserAPIViewSet.as_view({"post": "verify_email"}),
+    #     name="api_verify_email",
+    # ),
     path("upload_resume/", views.upload_resume, name="upload_resume"),
 ]

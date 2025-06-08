@@ -15,14 +15,12 @@ class UserAdmin(BaseUserAdmin):
         "first_name",
         "last_name",
         "is_staff",
-        "is_oauth_user",
         "oauth_provider",
     )
     list_filter = (
         "is_staff",
         "is_superuser",
         "is_active",
-        "is_oauth_user",
         "oauth_provider",
     )
     fieldsets = (
@@ -57,10 +55,8 @@ class UserAdmin(BaseUserAdmin):
             "OAuth Info",
             {
                 "fields": (
-                    "is_oauth_user",
                     "oauth_provider",
                     "oauth_uid",
-                    "email_verified",
                 )
             },
         ),
