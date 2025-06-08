@@ -7,20 +7,20 @@ $(document).ready(function () {
     });
 
     function showToast(message, type) {
-        const toastHtml = `
-            <div class="toast ${type === 'success' ? 'toast-success' : 'toast-error'}" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">${type === 'success' ? 'Success' : 'Error'}</strong>
+            const toastHtml = `
+            <div class="toast toast-container ${type === 'success' ? 'toast-success' : 'toast-error'}" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">${type === 'success' ? 'Success' : 'Error'}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    ${message}
-                </div>
-            </div>`;
-        $('body').append(toastHtml);
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>`;
+            $('body').append(toastHtml);
         $('.toast').toast({ delay: 5000 }).toast('show');
         setTimeout(() => $('.toast').remove(), 5500);
-    }
+        }
 
     $('#profile_picture').change(function (e) {
         const file = e.target.files[0];
@@ -36,9 +36,11 @@ $(document).ready(function () {
     $('#profile-form').submit(function (e) {
         e.preventDefault();
         const formData = new FormData(this);
+        var updateProfileUrl = $('#updateProfileButton').data('url');
 
+    
         $.ajax({
-            url: '{% url "users:update_profile" %}',
+            url: updateProfileUrl,
             type: 'POST',
             data: formData,
             processData: false,

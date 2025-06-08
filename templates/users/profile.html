@@ -68,7 +68,7 @@
                                 <input type="tel" class="form-control" id="phone_number" name="phone_number"
                                     value="{{ user.phone_number }}">
                             </div>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button id="updateProfileButton" type="submit" class="btn btn-primary" data-url="{% url 'users:update_profile' %}">Save Changes</button>
                         </form>
                     </div>
 

@@ -1,373 +1,150 @@
-[May 11, 2025 21:14:33 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 11, 2025 21:15:11 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 11, 2025 21:16:25 India Standard Time] [INFO] [autoreload.py:265] - E:\Major\edulance\users\urls.py changed, reloading.
-[May 11, 2025 21:16:27 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 11, 2025 21:17:22 India Standard Time] [INFO] [basehttp.py:213] - "GET /register HTTP/1.1" 301 0
-[May 11, 2025 21:17:23 India Standard Time] [ERROR] [log.py:248] - Internal Server Error: /register/
-Traceback (most recent call last):
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\users\views.py", line 33, in register
-    return render(request, "register.html", {"form": form})
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
-    return self.template.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 171, in render
-    return self._render(context)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
-    return self.nodelist.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
-    return compiled_parent._render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
-    return self.nodelist.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
-    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
-[May 11, 2025 21:17:24 India Standard Time] [ERROR] [basehttp.py:213] - "GET /register/ HTTP/1.1" 500 138669
-[May 11, 2025 21:17:24 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 11, 2025 21:17:24 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 2643
-[May 11, 2025 21:18:20 India Standard Time] [INFO] [autoreload.py:265] - E:\Major\edulance\users\views.py changed, reloading.
-[May 11, 2025 21:18:22 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 11, 2025 21:18:42 India Standard Time] [INFO] [autoreload.py:265] - E:\Major\edulance\users\urls.py changed, reloading.
-[May 11, 2025 21:18:44 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 11, 2025 21:18:46 India Standard Time] [INFO] [basehttp.py:213] - "GET /register/ HTTP/1.1" 200 2501
-[May 11, 2025 21:18:46 India Standard Time] [WARNING] [basehttp.py:213] - "GET /static/css/style.css HTTP/1.1" 404 1853
-[May 17, 2025 21:23:06 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 17, 2025 21:23:38 India Standard Time] [ERROR] [log.py:248] - Internal Server Error: /
-Traceback (most recent call last):
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\users\views.py", line 21, in home
-    return render(request, "<h1>hi</hi>")
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
-    template = get_template(template_name, using=using)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
-    return engine.get_template(template_name)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
-    return Template(self.engine.get_template(template_name), self)
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
-    template, origin = self.find_template(template_name)
-                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
-    template = loader.get_template(name, skip=skip)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
-    template = super().get_template(template_name, skip)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loaders\base.py", line 23, in get_template
-    contents = self.get_contents(origin)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loaders\cached.py", line 26, in get_contents
-    return origin.loader.get_contents(origin)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loaders\filesystem.py", line 22, in get_contents
-    with open(origin.name, encoding=self.engine.file_charset) as fp:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument: 'E:\\Major\\edulance\\templates\\<h1>hi<\\hi>'
-[May 17, 2025 21:23:38 India Standard Time] [ERROR] [basehttp.py:213] - "GET / HTTP/1.1" 500 114809
-[May 17, 2025 21:23:39 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 17, 2025 21:23:39 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 2889
-[May 17, 2025 21:24:58 India Standard Time] [INFO] [autoreload.py:265] - E:\Major\edulance\users\views.py changed, reloading.
-[May 17, 2025 21:25:00 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 17, 2025 21:25:00 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 11
-[May 17, 2025 21:25:15 India Standard Time] [INFO] [basehttp.py:213] - "GET /register HTTP/1.1" 301 0
-[May 17, 2025 21:25:15 India Standard Time] [INFO] [basehttp.py:213] - "GET /register/ HTTP/1.1" 200 2501
-[May 17, 2025 21:25:15 India Standard Time] [WARNING] [basehttp.py:213] - "GET /static/css/style.css HTTP/1.1" 404 1853
-[May 17, 2025 21:25:16 India Standard Time] [WARNING] [basehttp.py:213] - "GET /static/css/style.css HTTP/1.1" 404 1853
-[May 17, 2025 21:27:26 India Standard Time] [INFO] [autoreload.py:265] - E:\Major\edulance\users\models.py changed, reloading.
-[May 17, 2025 21:27:27 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 17, 2025 21:27:31 India Standard Time] [INFO] [autoreload.py:265] - E:\Major\edulance\users\models.py changed, reloading.
-[May 17, 2025 21:27:33 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 00:27:06 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 00:29:35 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 00:33:44 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 00:33:55 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 13097
-[May 18, 2025 00:33:56 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 00:33:56 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 12939
-[May 18, 2025 00:34:04 India Standard Time] [INFO] [basehttp.py:213] - "GET /register/ HTTP/1.1" 200 11866
-[May 18, 2025 00:34:09 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 00:34:23 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11701
-[May 18, 2025 00:34:26 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 00:34:34 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11701
-[May 18, 2025 00:35:48 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 13097
-[May 18, 2025 00:46:57 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 00:47:02 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 00:47:05 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 00:47:28 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 13097
-[May 18, 2025 00:47:30 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 00:47:32 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 01:00:23 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 01:02:45 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 13097
-[May 18, 2025 01:02:46 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 01:02:46 India Standard Time] [INFO] [basehttp.py:81] - - Broken pipe from ('127.0.0.1', 49575)
-[May 18, 2025 01:02:47 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:02:48 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 01:05:22 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:05:24 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 01:05:24 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 12939
-[May 18, 2025 01:05:27 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 01:06:27 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:13:43 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 01:14:19 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:14:20 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 01:14:20 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 12939
-[May 18, 2025 01:14:35 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 01:14:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:14:40 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 01:14:40 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 12939
-[May 18, 2025 01:14:42 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 01:14:52 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:14:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 01:18:04 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:18:06 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 01:18:06 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 12939
-[May 18, 2025 01:18:07 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 01:18:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/complete/google-oauth2/?state=NVeyDjDMcTPhbMXe91YFU8S5v8aOeKII&code=4%2F0AUJR-x40skQ37wvX_yTcXF1MArcVKV-XSfSNG_7uj_sAgEsLhIFik1OA_L2lTZICmyVMXQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=2&prompt=consent HTTP/1.1" 302 0
-[May 18, 2025 01:18:20 India Standard Time] [ERROR] [log.py:248] - Internal Server Error: /profile/
-Traceback (most recent call last):
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
-    return view_func(request, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\users\views.py", line 162, in profile_view
-    return render(request, "users/profile.html", {"skills": skills})
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
-    template = get_template(template_name, using=using)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
-    raise TemplateDoesNotExist(template_name, chain=chain)
-django.template.exceptions.TemplateDoesNotExist: users/profile.html
-[May 18, 2025 01:18:20 India Standard Time] [ERROR] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 500 92793
-[May 18, 2025 01:19:52 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 12945
-[May 18, 2025 01:19:53 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 01:19:53 India Standard Time] [INFO] [basehttp.py:81] - - Broken pipe from ('127.0.0.1', 49781)
-[May 18, 2025 01:19:59 India Standard Time] [ERROR] [log.py:248] - Internal Server Error: /profile/
-Traceback (most recent call last):
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
-    return view_func(request, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\users\views.py", line 162, in profile_view
-    return render(request, "users/profile.html", {"skills": skills})
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
-    template = get_template(template_name, using=using)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
-    raise TemplateDoesNotExist(template_name, chain=chain)
-django.template.exceptions.TemplateDoesNotExist: users/profile.html
-[May 18, 2025 01:19:59 India Standard Time] [ERROR] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 500 92938
-[May 18, 2025 01:21:47 India Standard Time] [INFO] [autoreload.py:265] - E:\Major\edulance\users\views.py changed, reloading.
-[May 18, 2025 01:21:51 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
-[May 18, 2025 01:22:13 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 13097
-[May 18, 2025 01:23:05 India Standard Time] [ERROR] [log.py:248] - Internal Server Error: /profile/
-Traceback (most recent call last):
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
-    return view_func(request, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\users\views.py", line 162, in profile_view
-    return render(request, "users/profile.html", {"skills": skills})
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
-    return self.template.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 171, in render
-    return self._render(context)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
-    return self.nodelist.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
-    return compiled_parent._render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
-    return self.nodelist.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
-    result = block.nodelist.render(context)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
-    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'profile_update' not found. 'profile_update' is not a valid view function or pattern name.
-[May 18, 2025 01:23:05 India Standard Time] [ERROR] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 500 164377
-[May 18, 2025 01:24:12 India Standard Time] [ERROR] [log.py:248] - Internal Server Error: /profile/
-Traceback (most recent call last):
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
-    return view_func(request, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\users\views.py", line 162, in profile_view
-    return render(request, "users/profile.html", {"skills": skills})
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
-    return self.template.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 171, in render
-    return self._render(context)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
-    return self.nodelist.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
-    return compiled_parent._render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
-    return self.nodelist.render(context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
-    result = block.nodelist.render(context)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
-    return self.render(context)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
-    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\Major\edulance\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'password_change' not found. 'password_change' is not a valid view function or pattern name.
-[May 18, 2025 01:24:12 India Standard Time] [ERROR] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 500 164194
-[May 18, 2025 01:25:05 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 19778
-[May 18, 2025 01:25:23 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 19778
-[May 18, 2025 01:25:27 India Standard Time] [INFO] [basehttp.py:213] - "GET /logout/ HTTP/1.1" 302 0
-[May 18, 2025 01:25:27 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 13694
-[May 18, 2025 01:26:03 India Standard Time] [INFO] [basehttp.py:213] - "GET /register/ HTTP/1.1" 200 12421
-[May 18, 2025 01:26:06 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
-[May 18, 2025 01:26:10 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/complete/google-oauth2/?state=tI9Tud1uMrflstPwIEBJHtPIqnltTFjE&code=4%2F0AUJR-x7f2QLaD3SBQwQhduSp-OIiGtHsHAViGZSBb7CPcOp6KNGHpRQQlL121RVmmBbqGQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=2&prompt=none HTTP/1.1" 302 0
-[May 18, 2025 01:26:10 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 19778
-[May 18, 2025 01:26:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /logout/ HTTP/1.1" 302 0
-[May 18, 2025 01:26:39 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 13694
-[May 18, 2025 01:26:42 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:26:43 India Standard Time] [INFO] [basehttp.py:213] - "GET /register/ HTTP/1.1" 200 12421
-[May 18, 2025 01:26:45 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:26:46 India Standard Time] [INFO] [basehttp.py:213] - "GET /register/ HTTP/1.1" 200 12421
-[May 18, 2025 01:27:13 India Standard Time] [INFO] [basehttp.py:213] - "GET /register/ HTTP/1.1" 200 12420
-[May 18, 2025 01:27:14 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 11753
-[May 18, 2025 01:27:14 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
-[May 18, 2025 01:27:14 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 12939
+[June 08, 2025 22:39:43 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 08, 2025 22:39:54 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 6040
+[June 08, 2025 22:39:55 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/home.css HTTP/1.1" 200 1049
+[June 08, 2025 22:39:55 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 22:39:55 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 22:39:55 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 22:39:55 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 22:39:58 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 6040
+[June 08, 2025 22:39:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/home.css HTTP/1.1" 200 1049
+[June 08, 2025 22:39:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 22:39:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 22:39:59 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 22:39:59 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 22:40:07 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 5888
+[June 08, 2025 22:40:07 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 22:40:07 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/home.css HTTP/1.1" 200 1049
+[June 08, 2025 22:40:07 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 22:40:08 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 22:40:08 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 22:40:23 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 22:40:23 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 22:40:23 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4144
+[June 08, 2025 22:40:44 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 22:41:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 22:41:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 22:41:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 22:41:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 22:41:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4144
+[June 08, 2025 22:41:21 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 22:41:21 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 22:41:56 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 22:42:06 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:05:08 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:05:08 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:05:08 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:05:08 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:05:08 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4151
+[June 08, 2025 23:05:09 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:05:09 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:05:12 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:05:15 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:05:30 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:11:35 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:11:35 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:11:35 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:11:35 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:11:35 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4154
+[June 08, 2025 23:11:36 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:11:36 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:11:37 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:11:42 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 08, 2025 23:11:42 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 08, 2025 23:11:47 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:11:53 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:11:53 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:11:53 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:11:53 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:11:53 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4154
+[June 08, 2025 23:11:54 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:11:54 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:11:55 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:12:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:12:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:12:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:12:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:12:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4157
+[June 08, 2025 23:12:40 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:12:40 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:12:42 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:12:44 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:12:45 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:12:45 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:12:54 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:12:54 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:12:54 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:12:54 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:12:54 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4154
+[June 08, 2025 23:12:54 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:12:54 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:12:56 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:12:59 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 08, 2025 23:12:59 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 08, 2025 23:13:02 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:13:12 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:13:19 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:13:46 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:13:46 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 08, 2025 23:13:46 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 08, 2025 23:13:46 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:13:46 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:13:46 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:13:46 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4153
+[June 08, 2025 23:13:47 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:13:47 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:13:50 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:13:55 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:14:10 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:14:10 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 08, 2025 23:14:10 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 08, 2025 23:14:10 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:14:10 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:14:10 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:14:10 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4154
+[June 08, 2025 23:14:10 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:14:10 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:14:16 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:15:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:15:18 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 08, 2025 23:15:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:15:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:15:18 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 08, 2025 23:15:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:15:19 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4153
+[June 08, 2025 23:15:19 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:15:19 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:15:22 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:17:33 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:17:34 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 08, 2025 23:17:34 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 08, 2025 23:17:34 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:17:34 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:17:34 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:17:34 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4178
+[June 08, 2025 23:17:35 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:17:35 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:17:37 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:17:48 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:18:04 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:18:32 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:20:37 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:20:52 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:22:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:22:20 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 08, 2025 23:22:20 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 08, 2025 23:22:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:22:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:22:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:22:20 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4140
+[June 08, 2025 23:22:21 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:22:21 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:22:23 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 08, 2025 23:22:48 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 08, 2025 23:22:57 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 9677
+[June 08, 2025 23:22:57 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 08, 2025 23:22:57 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 08, 2025 23:22:57 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 08, 2025 23:22:57 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4140
+[June 08, 2025 23:22:58 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 08, 2025 23:22:58 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 08, 2025 23:23:00 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
