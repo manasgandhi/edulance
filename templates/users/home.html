@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Edulance - Education Freelancing Platform{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="row align-items-center">
@@ -77,7 +82,6 @@
     </div>
 </div>
 
-<!-- Call to Action Section -->
 <div class="row text-center my-5">
     <div class="col-12">
         <h2 class="mb-4">Ready to Start Your Journey?</h2>
