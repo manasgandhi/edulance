@@ -117,6 +117,7 @@
                                 Your Selected Skills
                             </div>
                             <form id="skills-form">
+                                {% csrf_token %}
                                 <div class="mb-3">
                                     <label class="form-label">Add or Select Skills</label>
                                     <select class="form-select skills-select" name="skills[]" multiple>
@@ -125,15 +126,7 @@
                                         {% endfor %}
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <h6>Selected Skills:</h6>
-                                    {% for skill in user.skills.all %}
-                                    <span class="skill-tag">{{ skill.name }}</span>
-                                    {% empty %}
-                                    <p class="text-muted">No skills selected yet.</p>
-                                    {% endfor %}
-                                </div>
-                                <button type="submit" class="btn btn-primary">Update Skills</button>
+                                <button type="submit" id="updateSkillsButton" data-url="{% url "users:update_profile" %}" class="btn btn-primary">Update Skills</button>
                             </form>
                         </div>
                     </div>

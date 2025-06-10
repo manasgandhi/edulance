@@ -65,13 +65,15 @@ $(document).ready(function () {
             name: item.text,
             isNew: item.id.includes('select2-')
         }));
+        var updateSkillsUrl = $('#updateSkillsButton').data('url');
 
+    
         $.ajax({
-            url: '{% url "api:update_skills" %}',
+            url: updateSkillsUrl,
             type: 'POST',
             data: {
                 skills: JSON.stringify(selectedSkills),
-                csrfmiddlewaretoken: '{{ csrf_token }}'
+                // csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function (response) {
                 if (response.success) {

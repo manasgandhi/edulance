@@ -200,10 +200,11 @@ class UpdateSkillsAPIView(APIView):
 
                 if is_new:
                     # Create new skill if it doesn't exist
-                    skill_obj, created = Skill.objects.get_or_create(
-                        name=skill_name.strip(), defaults={"description": ""}
-                    )
-                    new_skill_ids.append(skill_obj.id)
+                    # skill_obj, created = Skill.objects.get_or_create(
+                    #     name=skill_name.strip(), defaults={"description": ""}
+                    # )
+                    # new_skill_ids.append(skill_obj.id)
+                    pass
                 else:
                     # Validate existing skill
                     try:
