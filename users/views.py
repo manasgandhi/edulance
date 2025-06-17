@@ -68,10 +68,11 @@ def profile_view(request):
     )
 
 
+# @login_required
 @method_decorator(csrf_protect, name="dispatch")
 class ProfileUpdateView(View):
     """View for handling AJAX profile updates"""
-
+    # @login_required
     def post(self, request):
         if not request.user.is_authenticated:
             return JsonResponse({"error": "Authentication required"}, status=401)
@@ -137,6 +138,18 @@ def upload_resume(request):
             # Process resume using the file path
             extracted_skills = process_resume_file(temp_file_path)
             print(f"Extracted skills: {extracted_skills}")
+            extracted_skills = set(skill.strip() for skill in extracted_skills if skill.strip())
+
+            # Get or create Skill objects
+            skill_objects = []
+            for skill_name in extracted_skills:
+                skill_obj, _ = Skill.objects.get_or_create(name=skill_name)
+                skill_objects.append(skill_obj)
+
+            # Associate with the user (assuming a UserProfile with many-to-many to Skill)
+            request.user.skills.set(skill_objects)  # or .add() if you want to keep old ones
+            request.user.save()
+
         except Exception as e:
             print(f"Error processing resume: {e}")
             extracted_skills = []

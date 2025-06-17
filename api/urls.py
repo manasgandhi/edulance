@@ -32,5 +32,4 @@ urlpatterns = [
     #     name="password_reset_confirm",
     # ),
     # path("change_password/", ChangePasswordAPIView.as_view(), name="change_password"),
-    path("update_skills/", UpdateSkillsAPIView.as_view(), name="update_skills"),
 ]

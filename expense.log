@@ -148,3 +148,253 @@
 [June 08, 2025 23:22:58 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
 [June 08, 2025 23:22:58 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
 [June 08, 2025 23:23:00 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 09, 2025 09:33:48 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:34:02 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 5888
+[June 09, 2025 09:34:03 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/home.css HTTP/1.1" 304 0
+[June 09, 2025 09:34:03 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 304 0
+[June 09, 2025 09:34:03 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 304 0
+[June 09, 2025 09:34:06 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17813
+[June 09, 2025 09:34:06 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 304 0
+[June 09, 2025 09:34:06 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4144
+[June 09, 2025 09:36:10 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:36:12 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:36:22 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17813
+[June 09, 2025 09:36:22 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:36:22 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:36:22 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4144
+[June 09, 2025 09:36:22 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:36:23 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:36:23 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:37:06 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 09:37:07 India Standard Time] [INFO] [loader.py:125] - Loading faiss with AVX2 support.
+[June 09, 2025 09:37:07 India Standard Time] [INFO] [loader.py:127] - Successfully loaded faiss with AVX2 support.
+[June 09, 2025 09:37:07 India Standard Time] [INFO] [__init__.py:186] - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+[June 09, 2025 09:37:08 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 09:37:10 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: GET https://api.cohere.com/v1/models?endpoint=chat&default_only=true "HTTP/1.1 200 OK"
+[June 09, 2025 09:37:12 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v2/chat "HTTP/1.1 200 OK"
+[June 09, 2025 09:37:12 India Standard Time] [INFO] [basehttp.py:213] - "POST /upload_resume/ HTTP/1.1" 200 22177
+[June 09, 2025 09:38:12 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 5888
+[June 09, 2025 09:38:13 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17802
+[June 09, 2025 09:38:49 India Standard Time] [WARNING] [log.py:248] - Not Found: /profile/{% url "api:update_skills" %}
+[June 09, 2025 09:38:49 India Standard Time] [WARNING] [basehttp.py:213] - "POST /profile/%7B%%20url%20%22api:update_skills%22%20%%7D HTTP/1.1" 404 11690
+[June 09, 2025 09:38:52 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:38:52 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:41:01 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17824
+[June 09, 2025 09:41:01 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:41:01 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:41:01 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:41:01 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:41:01 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:41:01 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4203
+[June 09, 2025 09:41:02 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:41:02 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:41:12 India Standard Time] [WARNING] [log.py:248] - Forbidden: /api/update_skills/
+[June 09, 2025 09:41:12 India Standard Time] [WARNING] [basehttp.py:213] - "POST /api/update_skills/ HTTP/1.1" 403 68
+[June 09, 2025 09:41:29 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:41:31 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:41:40 India Standard Time] [WARNING] [log.py:248] - Forbidden: /api/update_skills/
+[June 09, 2025 09:41:40 India Standard Time] [WARNING] [basehttp.py:213] - "POST /api/update_skills/ HTTP/1.1" 403 68
+[June 09, 2025 09:42:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17824
+[June 09, 2025 09:42:00 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:42:00 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:42:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:42:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:42:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:42:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4203
+[June 09, 2025 09:42:01 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:42:01 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:42:08 India Standard Time] [WARNING] [log.py:248] - Forbidden: /api/update_skills/
+[June 09, 2025 09:42:08 India Standard Time] [WARNING] [basehttp.py:213] - "POST /api/update_skills/ HTTP/1.1" 403 68
+[June 09, 2025 09:42:32 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:42:35 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:42:38 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17824
+[June 09, 2025 09:42:38 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:42:38 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:42:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:42:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:42:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:42:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4203
+[June 09, 2025 09:42:40 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:42:40 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:42:44 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:42:46 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:43:18 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:43:20 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:43:34 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:43:36 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:43:50 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:43:52 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:44:08 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17824
+[June 09, 2025 09:44:09 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:44:09 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:44:09 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 09:44:09 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:44:09 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:44:14 India Standard Time] [WARNING] [log.py:248] - Forbidden: /api/update_skills/
+[June 09, 2025 09:44:14 India Standard Time] [WARNING] [basehttp.py:213] - "POST /api/update_skills/ HTTP/1.1" 403 68
+[June 09, 2025 09:44:29 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:44:31 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:44:39 India Standard Time] [WARNING] [log.py:248] - Forbidden: /api/update_skills/
+[June 09, 2025 09:44:39 India Standard Time] [WARNING] [basehttp.py:213] - "POST /api/update_skills/ HTTP/1.1" 403 68
+[June 09, 2025 09:45:07 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\urls.py changed, reloading.
+[June 09, 2025 09:45:09 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:45:42 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\api\urls.py changed, reloading.
+[June 09, 2025 09:45:44 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:45:50 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:45:53 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:46:13 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17821
+[June 09, 2025 09:46:13 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:46:13 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:46:13 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:46:13 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:46:13 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4203
+[June 09, 2025 09:46:13 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:46:25 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:46:25 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:46:38 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17821
+[June 09, 2025 09:46:38 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:46:38 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:46:53 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17821
+[June 09, 2025 09:46:53 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:46:53 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:46:53 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 09:46:55 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17821
+[June 09, 2025 09:46:55 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:46:55 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:46:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17821
+[June 09, 2025 09:46:58 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:46:58 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:46:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:46:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:46:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:46:58 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4203
+[June 09, 2025 09:46:58 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:46:58 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:47:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17821
+[June 09, 2025 09:47:00 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:47:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:47:00 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:47:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:47:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:47:00 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4203
+[June 09, 2025 09:47:00 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:47:00 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:47:19 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17821
+[June 09, 2025 09:47:19 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:47:19 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:47:43 India Standard Time] [INFO] [autoreload.py:265] - C:\Users\Asus\Desktop\project\sem8\edulance\users\views.py changed, reloading.
+[June 09, 2025 09:47:46 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:47:50 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:47:50 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:47:50 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:47:50 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:47:56 India Standard Time] [WARNING] [log.py:248] - Forbidden (CSRF token from POST has incorrect length.): /update-profile/
+[June 09, 2025 09:47:56 India Standard Time] [WARNING] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 403 2514
+[June 09, 2025 09:49:16 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17975
+[June 09, 2025 09:49:16 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:49:16 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:49:16 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:49:16 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:49:16 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:49:16 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4203
+[June 09, 2025 09:49:18 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:49:18 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:49:27 India Standard Time] [WARNING] [log.py:248] - Forbidden (CSRF token from POST has incorrect length.): /update-profile/
+[June 09, 2025 09:49:27 India Standard Time] [WARNING] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 403 2514
+[June 09, 2025 09:50:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17975
+[June 09, 2025 09:50:18 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:50:18 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:50:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:50:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:50:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:50:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4206
+[June 09, 2025 09:50:22 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:50:22 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:50:29 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 09, 2025 09:50:29 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17975
+[June 09, 2025 09:50:29 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:50:29 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 09:50:29 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:50:44 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 09, 2025 09:50:44 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17975
+[June 09, 2025 09:50:44 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:50:44 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 09:50:44 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:50:55 India Standard Time] [INFO] [basehttp.py:213] - "POST /update-profile/ HTTP/1.1" 200 43
+[June 09, 2025 09:50:55 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17975
+[June 09, 2025 09:50:55 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:50:55 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 09:50:55 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:50:59 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17975
+[June 09, 2025 09:50:59 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:50:59 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:50:59 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:50:59 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:50:59 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:50:59 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4206
+[June 09, 2025 09:51:00 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:51:00 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:53:12 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 09:53:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17839
+[June 09, 2025 09:53:18 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:53:18 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:53:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/profile.css HTTP/1.1" 200 4710
+[June 09, 2025 09:53:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/base.js HTTP/1.1" 200 2764
+[June 09, 2025 09:53:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 200 4206
+[June 09, 2025 09:53:18 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/base.css HTTP/1.1" 200 10575
+[June 09, 2025 09:53:19 India Standard Time] [WARNING] [log.py:248] - Not Found: /favicon.ico
+[June 09, 2025 09:53:19 India Standard Time] [WARNING] [basehttp.py:213] - "GET /favicon.ico HTTP/1.1" 404 11573
+[June 09, 2025 09:57:53 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 09:57:54 India Standard Time] [INFO] [loader.py:125] - Loading faiss with AVX2 support.
+[June 09, 2025 09:57:54 India Standard Time] [INFO] [loader.py:127] - Successfully loaded faiss with AVX2 support.
+[June 09, 2025 09:57:54 India Standard Time] [INFO] [__init__.py:186] - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+[June 09, 2025 09:57:54 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 09:57:56 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: GET https://api.cohere.com/v1/models?endpoint=chat&default_only=true "HTTP/1.1 200 OK"
+[June 09, 2025 09:57:57 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v2/chat "HTTP/1.1 200 OK"
+[June 09, 2025 09:57:57 India Standard Time] [INFO] [basehttp.py:213] - "POST /upload_resume/ HTTP/1.1" 200 20240
+[June 09, 2025 09:57:57 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:57:57 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:57:57 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 09:58:19 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 5888
+[June 09, 2025 09:58:19 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:58:19 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:58:21 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17975
+[June 09, 2025 09:58:21 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:58:21 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:58:33 India Standard Time] [INFO] [basehttp.py:213] - "GET /logout/ HTTP/1.1" 302 0
+[June 09, 2025 09:58:33 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 6321
+[June 09, 2025 09:58:33 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:58:33 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:58:35 India Standard Time] [INFO] [basehttp.py:213] - "GET /login/ HTTP/1.1" 200 3373
+[June 09, 2025 09:58:35 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:58:35 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/css/login.css HTTP/1.1" 200 1826
+[June 09, 2025 09:58:35 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:58:39 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/login/google-oauth2/ HTTP/1.1" 302 0
+[June 09, 2025 09:58:45 India Standard Time] [INFO] [basehttp.py:213] - "GET /social-auth/complete/google-oauth2/?state=suwWsz1wXgBhjbO4VxIWVAqrNmSDBGQi&code=4%2F0AUJR-x66W6fL-HvQgHjbh1kbZORFHFR6-oHdDfBz24eYU-K7hsgqTFroeA3Kwydq_bwaGw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=2&prompt=none HTTP/1.1" 302 0
+[June 09, 2025 09:58:45 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 17957
+[June 09, 2025 09:58:45 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:58:45 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 09:58:45 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 09:59:21 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 09:59:23 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 09:59:25 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: GET https://api.cohere.com/v1/models?endpoint=chat&default_only=true "HTTP/1.1 200 OK"
+[June 09, 2025 09:59:25 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v2/chat "HTTP/1.1 200 OK"
+[June 09, 2025 09:59:26 India Standard Time] [INFO] [basehttp.py:213] - "POST /upload_resume/ HTTP/1.1" 200 21299
+[June 09, 2025 09:59:26 India Standard Time] [WARNING] [log.py:248] - Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[June 09, 2025 09:59:26 India Standard Time] [WARNING] [basehttp.py:213] - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11684
+[June 09, 2025 10:02:00 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 10:02:02 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 10:02:03 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: GET https://api.cohere.com/v1/models?endpoint=chat&default_only=true "HTTP/1.1 200 OK"
+[June 09, 2025 10:02:43 India Standard Time] [INFO] [autoreload.py:667] - Watching for file changes with StatReloader
+[June 09, 2025 10:03:14 India Standard Time] [INFO] [basehttp.py:213] - "GET / HTTP/1.1" 200 5888
+[June 09, 2025 10:03:25 India Standard Time] [INFO] [basehttp.py:213] - "GET /profile/ HTTP/1.1" 200 18792
+[June 09, 2025 10:03:25 India Standard Time] [INFO] [basehttp.py:213] - "GET /static/js/profile.js HTTP/1.1" 304 0
+[June 09, 2025 10:04:09 India Standard Time] [WARNING] [before_sleep.py:65] - Retrying langchain_cohere.embeddings.CohereEmbeddings.embed_with_retry.<locals>._embed_with_retry in 4.0 seconds as it raised ConnectError: [Errno 11001] getaddrinfo failed.
+[June 09, 2025 10:04:14 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 10:04:15 India Standard Time] [INFO] [loader.py:125] - Loading faiss with AVX2 support.
+[June 09, 2025 10:04:15 India Standard Time] [INFO] [loader.py:127] - Successfully loaded faiss with AVX2 support.
+[June 09, 2025 10:04:15 India Standard Time] [INFO] [__init__.py:186] - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+[June 09, 2025 10:04:16 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v1/embed "HTTP/1.1 200 OK"
+[June 09, 2025 10:04:17 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: GET https://api.cohere.com/v1/models?endpoint=chat&default_only=true "HTTP/1.1 200 OK"
+[June 09, 2025 10:04:19 India Standard Time] [INFO] [_client.py:1025] - HTTP Request: POST https://api.cohere.com/v2/chat "HTTP/1.1 200 OK"
+[June 09, 2025 10:04:19 India Standard Time] [INFO] [basehttp.py:213] - "POST /upload_resume/ HTTP/1.1" 200 21193
