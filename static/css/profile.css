@@ -1,0 +1,213 @@
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #858796;
+    --accent-color: #e9ecef;
+    --text-color: #858796;
+}
+
+.profile-header {
+    background: linear-gradient(45deg, var(--primary-color), #6b93e6);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px 15px 0 0;
+}
+
+.profile-tabs .nav-link {
+    color: var(--text-color);
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+}
+
+.profile-tabs .nav-link.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    background: transparent;
+}
+
+.form-control,
+.select2-container--default .select2-selection--multiple {
+    border-radius: 10px;
+    border: 2px solid var(--accent-color);
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus,
+.select2-container--default .select2-selection--multiple:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+.profile-picture-preview {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+}
+
+.avatar-upload {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.avatar-upload:hover {
+    background: #6b93e6;
+}
+
+.resume-upload-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 2px dashed var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.resume-upload-container:hover {
+    border-color: #6b93e6;
+    box-shadow: 0 8px 25px rgba(78, 115, 223, 0.15);
+    transform: translateY(-2px);
+}
+
+.upload-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.file-input-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.custom-file-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-input-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 60px;
+}
+
+.file-input-display:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.file-input-display i {
+    margin-right: 0.5rem;
+}
+
+.file-selected {
+    background: #6b93e6 !important;
+    color: white !important;
+    border-color: #6b93e6 !important;
+}
+
+.upload-btn-custom {
+    background: linear-gradient(45deg, var(--primary-color), #6b93e6);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3);
+    width: 100%;
+}
+
+.upload-btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 115, 223, 0.4);
+    color: white;
+}
+
+.upload-btn-custom:disabled {
+    background: var(--secondary-color);
+    cursor: not-allowed;
+}
+
+.skills-result,
+.user-skills {
+    background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+    border: none;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.skills-header {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.skills-header i {
+    margin-right: 0.5rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background: linear-gradient(45deg, var(--primary-color), #6b93e6);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(78, 115, 223, 0.3);
+}
+
+.file-info {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(78, 115, 223, 0.1);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    display: none;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: white;
+}
