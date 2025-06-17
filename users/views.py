@@ -12,7 +12,7 @@ from social_django.utils import psa
 
 import tempfile
 import os
-
+import json
 
 from .models import Skill
 
@@ -95,11 +95,15 @@ class ProfileUpdateView(View):
                 user.profile_picture = request.FILES["profile_picture"]
 
             # Handle skills update
-            if "skills[]" in request.POST:
-                skill_ids = request.POST.getlist("skills[]")
-                skills = Skill.objects.filter(id__in=skill_ids)
-                user.skills.set(skills)
-
+            if "skills" in request.POST:
+                try:
+                    skills_data = json.loads(request.POST.get("skills"))
+                    skill_ids = [s['id'] for s in skills_data if not s['isNew']]
+                    skills = Skill.objects.filter(id__in=skill_ids)
+                    user.skills.set(skills)
+                except json.JSONDecodeError:
+                    return JsonResponse({"error": "Invalid skills data"}, status=400)
+                
             user.save()
             return JsonResponse({"success": "Profile updated successfully"})
 
