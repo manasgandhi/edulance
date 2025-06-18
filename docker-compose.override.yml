@@ -4,6 +4,8 @@ services:
     image: edulance:v-combined
     ports:
       - "8000:8000"
+    volumes:
+      - .:/app
     depends_on:
       - db
       - redis
@@ -13,6 +15,8 @@ services:
 
   celery:
     image: edulance:v-combined
+    volumes:
+      - .:/app
     command: celery -A edulance_root worker --loglevel=INFO
     depends_on:
       - db
@@ -21,6 +25,8 @@ services:
       - .env.docker
   beat:
     image: edulance:v-combined
+    volumes:
+      - .:/app
     command: celery -A edulance_root beat --loglevel=INFO
     depends_on:
       - db
