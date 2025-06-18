@@ -25,14 +25,15 @@ class User(AbstractUser):
     github_profile = models.URLField(
         max_length=255, blank=True, null=True, validators=[URLValidator()]
     )
+    avatar_url = models.URLField(
+        max_length=255, blank=True, null=True, validators=[URLValidator()]
+    )
 
     skills = models.ManyToManyField(Skill, blank=True, related_name="users")
 
     # User ratings
     # Rating will be populated later, but we're adding the field now
     # rating = models.FloatField(default=0.0, null=True, blank=True)
-
-    # OAuth related fields
 
     oauth_provider = models.CharField(max_length=20, blank=True, null=True)
     oauth_uid = models.CharField(max_length=255, blank=True, null=True)

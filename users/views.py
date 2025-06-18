@@ -68,12 +68,10 @@ def profile_view(request):
     )
 
 
-# @login_required
 @method_decorator(csrf_protect, name="dispatch")
 class ProfileUpdateView(View):
     """View for handling AJAX profile updates"""
 
-    # @login_required
     def post(self, request):
         if not request.user.is_authenticated:
             return JsonResponse({"error": "Authentication required"}, status=401)
@@ -117,12 +115,8 @@ class ProfileUpdateView(View):
 def google_oauth_callback(request, backend):
     """Handle Google OAuth callback"""
     if request.user and request.user.is_authenticated:
-        # Update OAuth info
         user = request.user
-        # user.is_oauth_user = True
         user.oauth_provider = "google"
-        # OAuth ID should be set by the social auth pipeline
-        # user.email_verified = True  # Google verifies emails
         user.save()
 
     return redirect("users:profile")

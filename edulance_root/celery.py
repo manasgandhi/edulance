@@ -1,6 +1,7 @@
 import os
 from celery import Celery
 from celery.schedules import crontab
+from celery.signals import setup_logging
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "edulance_root.settings")
 
@@ -8,8 +9,6 @@ app = Celery("edulance")
 
 app.config_from_object("django.conf:settings", namespace="CELERY")
 app.conf.beat_scheduler = "django_celery_beat.schedulers:DatabaseScheduler"
-
-from celery.signals import setup_logging
 
 
 @setup_logging.connect
