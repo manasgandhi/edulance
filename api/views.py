@@ -13,7 +13,7 @@ import json
 from users.models import Skill
 
 User = get_user_model()
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("django")
 
 
 # class PasswordResetRequestAPIView(APIView):

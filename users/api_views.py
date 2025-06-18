@@ -15,7 +15,7 @@ from .serializers import (
     SkillSerializer,
 )
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("django")
 
 
 class UserAPIViewSet(viewsets.ModelViewSet):

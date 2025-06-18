@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework_simplejwt",
+    "django_celery_results",
+    "django_celery_beat",
     "social_django",
     "users",
     "api",
@@ -132,10 +134,26 @@ LOGGING = {
         },
     },
     "handlers": {
-        "file": {
+        "django_file": {
             "level": os.getenv("LOG_LEVEL").upper(),
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, os.getenv("LOG_FILE")),
+            "filename": os.path.join(BASE_DIR, os.getenv("DJANGO_LOG_FILE")),
+            "maxBytes": int(os.getenv("MAX_LOG_FILE_SIZE")),
+            "backupCount": int(os.getenv("LOG_BACKUP_COUNT")),
+            "formatter": "default",
+        },
+        "celery_file": {
+            "level": os.getenv("LOG_LEVEL").upper(),
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(BASE_DIR, os.getenv("CELERY_LOG_FILE")),
+            "maxBytes": int(os.getenv("MAX_LOG_FILE_SIZE")),
+            "backupCount": int(os.getenv("LOG_BACKUP_COUNT")),
+            "formatter": "default",
+        },
+        "celery_beat_file": {
+            "level": os.getenv("LOG_LEVEL").upper(),
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(BASE_DIR, os.getenv("CELERY_BEAT_LOG_FILE")),
             "maxBytes": int(os.getenv("MAX_LOG_FILE_SIZE")),
             "backupCount": int(os.getenv("LOG_BACKUP_COUNT")),
             "formatter": "default",
@@ -146,13 +164,19 @@ LOGGING = {
             "formatter": "default",
         },
     },
-    "root": {
-        "handlers": ["file", "console"],
-        "level": os.getenv("LOG_LEVEL").upper(),
-    },
     "loggers": {
         "django": {
-            "handlers": ["file", "console"],
+            "handlers": ["django_file", "console"],
+            "level": os.getenv("LOG_LEVEL").upper(),
+            "propagate": False,
+        },
+        "celery": {
+            "handlers": ["celery_file", "console"],
+            "level": os.getenv("LOG_LEVEL").upper(),
+            "propagate": False,
+        },
+        "celery_beat": {
+            "handlers": ["celery_beat_file", "console"],
             "level": os.getenv("LOG_LEVEL").upper(),
             "propagate": False,
         },
@@ -168,6 +192,11 @@ CACHES = {
         },
     }
 }
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+
 
 AUTH_USER_MODEL = "users.User"
 
@@ -193,7 +222,7 @@ LOGOUT_REDIRECT_URL = "users:home"
 # REST Framework settings
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        # "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": [
@@ -251,3 +280,26 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
+EMAIL_USE_TLS = bool(int(os.getenv("EMAIL_USE_TLS")))
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+
+SOCIAL_AUTH_PIPELINE = [
+    "social_core.pipeline.social_auth.social_details",
+    "social_core.pipeline.social_auth.social_uid",
+    "social_core.pipeline.social_auth.auth_allowed",
+    "social_core.pipeline.social_auth.social_user",
+    "social_core.pipeline.user.get_username",
+    "social_core.pipeline.user.create_user",
+    "users.pipeline.send_welcome_email",
+    "social_core.pipeline.social_auth.associate_user",
+    "social_core.pipeline.social_auth.load_extra_data",
+    "social_core.pipeline.user.user_details",
+]
+CELERYD_HIJACK_ROOT_LOGGER = False
