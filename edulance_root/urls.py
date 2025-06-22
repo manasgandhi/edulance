@@ -27,6 +27,7 @@ urlpatterns = [
     path("api/", include("api.urls")),
     # OAuth URLs
     path("social-auth/", include("social_django.urls", namespace="social")),
+    path("collaborate/", include("collaborate.urls", namespace="collaborate")),
 ]
 
 # Serve media files in development
