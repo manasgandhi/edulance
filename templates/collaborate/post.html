@@ -25,11 +25,11 @@
             {% endif %}
             
             <div class="mt-auto">
-                {% if post.required_skills %}
+                {% if post.required_skills.all %}
                 <p class="mb-2"><strong class="text-dark">Required Skills:</strong></p>
                 <div class="d-flex flex-wrap gap-2 mb-3">
-                    {% for skill in post.required_skills %}
-                        <span class="badge bg-primary rounded-pill">{{ skill }}</span>
+                    {% for skill in post.required_skills.all %}
+                        <span class="badge bg-primary rounded-pill">{{ skill.name }}</span>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -39,9 +39,9 @@
                         <i class="fas fa-eye me-1"></i>View Details
                     </a>
                     {% if post.user != request.user %}
-                    <a href="{% url 'collaborate:join_team' post.id %}" class="btn btn-primary btn-sm flex-fill">
+                    <button class="btn btn-primary btn-sm flex-fill join-team-btn" data-post-id="{{ post.id }}">
                         <i class="fas fa-users me-1"></i>Join Team
-                    </a>
+                    </button>
                     {% else %}
                     <span class="btn btn-success btn-sm flex-fill disabled">
                         <i class="fas fa-check me-1"></i>Your Post

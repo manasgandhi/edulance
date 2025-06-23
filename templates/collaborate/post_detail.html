@@ -1,11 +1,14 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}{{ post.title }} - Collaborate{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8">
+            <!-- Messages Container -->
+            <div id="messages-container"></div>
+
             <!-- Back Button -->
             <div class="mb-4">
                 <a href="{% url 'collaborate:collaboration_list' %}" class="btn btn-outline-secondary">
@@ -45,12 +48,12 @@
                     </div>
 
                     <!-- Required Skills -->
-                    {% if post.required_skills %}
+                    {% if post.required_skills.all %}
                     <div class="mb-4">
                         <h5 class="text-primary"><i class="fas fa-tools me-2"></i>Required Skills</h5>
                         <div class="d-flex flex-wrap gap-2">
-                            {% for skill in post.required_skills %}
-                                <span class="badge bg-primary rounded-pill fs-6">{{ skill }}</span>
+                            {% for skill in post.required_skills.all %}
+                                <span class="badge bg-primary rounded-pill fs-6">{{ skill.name }}</span>
                             {% endfor %}
                         </div>
                     </div>
@@ -69,9 +72,9 @@
                     <!-- Action Buttons -->
                     <div class="d-flex gap-3 mt-4">
                         {% if post.user != user %}
-                        <a href="{% url 'collaborate:join_team' post.id %}" class="btn btn-primary btn-lg">
+                        <button class="btn btn-primary btn-lg join-team-btn" data-post-id="{{ post.id }}">
                             <i class="fas fa-users me-2"></i>Join This Team
-                        </a>
+                        </button>
                         <button class="btn btn-outline-primary btn-lg" onclick="sharePost()">
                             <i class="fas fa-share me-2"></i>Share
                         </button>
@@ -108,6 +111,9 @@
     </div>
 </div>
 
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/collaborate.js' %}"></script>
 <script>
 function sharePost() {
     if (navigator.share) {
@@ -117,11 +123,11 @@ function sharePost() {
             url: window.location.href
         });
     } else {
-        // Fallback - copy to clipboard
         navigator.clipboard.writeText(window.location.href).then(() => {
-            alert('Link copied to clipboard!');
+            showMessage('Link copied to clipboard!', 'success');
         });
     }
 }
 </script>
+{% endblock %}
 {% endblock %}

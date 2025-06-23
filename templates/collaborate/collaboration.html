@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Collaborate - Edulance{% endblock %}
 
 {% block extra_css %}
@@ -86,20 +86,41 @@
         font-size: 0.8rem;
         display: inline-block;
     }
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .select2-container .select2-selection--multiple {
+        min-height: 38px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 2px 8px;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        color: white;
+        margin-right: 5px;
+    }
+
+    .select2-dropdown {
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-    <!-- Display Messages -->
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    {% endif %}
+    <!-- Messages Container -->
+    <div id="messages-container"></div>
 
     <!-- Header Section -->
     <div class="row mb-4">
@@ -141,7 +162,7 @@
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="groupstudy-tab" data-bs-toggle="tab" data-bs-target="#groupstudy" type="button"
+            <button class="nav-link" id="group_study-tab" data-bs-toggle="tab" data-bs-target="#groupstudy" type="button"
                 role="tab" aria-controls="groupstudy" aria-selected="false">
                 <i class="fas fa-users-cog me-2"></i>Group Study
                 <span class="badge bg-light text-dark ms-1">{{ posts_by_type.group_study.count }}</span>
@@ -230,79 +251,92 @@
 
 <!-- Create Post Modal -->
 <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title" id="createPostModalLabel">
-          <i class="fas fa-plus-circle me-2"></i>Create New Collaboration Post
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form method="post" action="{% url 'collaborate:create_post' %}" id="createPostForm">
-        <div class="modal-body">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Enter post title" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="activity_type" class="form-label">Activity Type <span class="text-danger">*</span></label>
-            <select class="form-select" id="activity_type" name="activity_type" required>
-              <option value="">Select activity type</option>
-              <option value="learning">Learning</option>
-              <option value="hackathon">Hackathon</option>
-              <option value="group_study">Group Study</option>
-              <option value="project">Project</option>
-            </select>
-          </div>
-          
-          <div class="mb-3">
-            <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
-            <textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe your collaboration post in detail..." required></textarea>
-          </div>
-          
-          <div class="mb-3">
-            <label for="skills" class="form-label">Skills Required</label>
-            <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g., Python, Django, AI, Machine Learning (comma-separated)">
-            <div class="form-text">Enter skills separated by commas. Leave blank if no specific skills are required.</div>
-          </div>
-          
-          <div class="mb-3">
-            <label for="deadline" class="form-label">Deadline (Optional)</label>
-            <input type="datetime-local" class="form-control" id="deadline" name="deadline">
-            <div class="form-text">Set a deadline for when you need collaborators or when the project should be completed.</div>
-          </div>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="createPostModalLabel">
+                    <i class="fas fa-plus-circle me-2"></i>Create New Collaboration Post
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="createPostForm">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter post title" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="activity_type" class="form-label">Activity Type <span class="text-danger">*</span></label>
+                        <select class="form-select" id="activity_type" name="activity_type" required>
+                            <option value="">Select activity type</option>
+                            <option value="learning">Learning</option>
+                            <option value="hackathon">Hackathon</option>
+                            <option value="group_study">Group Study</option>
+                            <option value="project">Project</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe your collaboration post in detail..." required></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Skills Required</label>
+                        <select class="form-select" id="skills" name="skills" multiple></select>
+                        <div class="form-text">Select one or more skills. Hold Ctrl/Cmd to select multiple.</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="deadline" class="form-label">Deadline (Optional)</label>
+                        <input type="datetime-local" class="form-control" id="deadline" name="deadline">
+                        <div class="form-text">Set a deadline for when you need collaborators or when the project should be completed.</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <i class="fas fa-paper-plane me-2"></i>Create Post
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="submitBtn">
-            <i class="fas fa-paper-plane me-2"></i>Create Post
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="{% static 'js/collaborate.js' %}"></script>
 <script>
-// Prevent double form submission
-document.getElementById('createPostForm').addEventListener('submit', function(e) {
-    const submitBtn = document.getElementById('submitBtn');
-    if (submitBtn.disabled) {
-        e.preventDefault();
-        return false;
-    }
-    
-    // Disable submit button and show loading state
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Creating...';
-    
-    // Re-enable after 3 seconds as a failsafe
-    setTimeout(function() {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Create Post';
-    }, 3000);
+$(document).ready(function() {
+    // Skills data passed from backend
+    var skillsData = {{ skills_json|safe }};
+
+    // Initialize Select2 for skills dropdown
+    $('#skills').select2({
+        placeholder: "Select skills",
+        allowClear: true,
+        width: '100%',
+        data: skillsData,
+        dropdownParent: $('#createPostModal')
+    });
+
+    // Re-initialize Select2 when modal is shown to fix rendering issues
+    $('#createPostModal').on('shown.bs.modal', function() {
+        $('#skills').val(null).trigger('change'); // Clear previous selections
+        $('#skills').select2('destroy').select2({
+            placeholder: "Select skills",
+            allowClear: true,
+            width: '100%',
+            data: skillsData,
+            dropdownParent: $('#createPostModal')
+        });
+    });
 });
 </script>
+{% endblock %}
 {% endblock %}
