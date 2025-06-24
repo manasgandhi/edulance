@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ post.title }} - Collaborate{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Messages Container -->
+            <div id="messages-container"></div>
+
+            <!-- Back Button -->
+            <div class="mb-4">
+                <a href="{% url 'collaborate:collaboration_list' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Collaborations
+                </a>
+            </div>
+
+            <!-- Post Details Card -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">{{ post.title }}</h4>
+                        <span class="badge bg-light text-dark">{{ post.get_activity_type_display }}</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Author and Date -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1">
+                                <i class="fas fa-user me-2"></i><strong>Created by:</strong> 
+                                {{ post.user.get_full_name|default:post.user.username }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1">
+                                <i class="fas fa-calendar me-2"></i><strong>Posted on:</strong> 
+                                {{ post.created_at|date:"F d, Y" }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-4">
+                        <h5 class="text-primary"><i class="fas fa-info-circle me-2"></i>Description</h5>
+                        <p class="text-muted">{{ post.description|linebreaks }}</p>
+                    </div>
+
+                    <!-- Required Skills -->
+                    {% if post.required_skills.all %}
+                    <div class="mb-4">
+                        <h5 class="text-primary"><i class="fas fa-tools me-2"></i>Required Skills</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for skill in post.required_skills.all %}
+                                <span class="badge bg-primary rounded-pill fs-6">{{ skill.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Deadline -->
+                    {% if post.deadline %}
+                    <div class="mb-4">
+                        <h5 class="text-primary"><i class="fas fa-clock me-2"></i>Deadline</h5>
+                        <p class="text-warning fs-5">
+                            <strong>{{ post.deadline|date:"F d, Y g:i A" }}</strong>
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex gap-3 mt-4">
+                        {% if post.user != user %}
+                        <button class="btn btn-primary btn-lg join-team-btn" data-post-id="{{ post.id }}">
+                            <i class="fas fa-users me-2"></i>Join This Team
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg" onclick="sharePost()">
+                            <i class="fas fa-share me-2"></i>Share
+                        </button>
+                        {% else %}
+                        <div class="alert alert-info d-flex align-items-center" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>
+                            This is your post. You can manage it from your dashboard.
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            {% if post.user != user %}
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-envelope me-2"></i>Contact Information</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <strong>Email:</strong> 
+                        <a href="mailto:{{ post.user.email }}">{{ post.user.email }}</a>
+                    </p>
+                    {% if post.user.profile.phone %}
+                    <p class="mb-0">
+                        <strong>Phone:</strong> {{ post.user.profile.phone }}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/collaborate.js' %}"></script>
+<script>
+function sharePost() {
+    if (navigator.share) {
+        navigator.share({
+            title: '{{ post.title }}',
+            text: '{{ post.description|truncatewords:20 }}',
+            url: window.location.href
+        });
+    } else {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            showMessage('Link copied to clipboard!', 'success');
+        });
+    }
+}
+</script>
+{% endblock %}
+{% endblock %}
