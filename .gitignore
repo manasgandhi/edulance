@@ -27,3 +27,5 @@ static_root/
 *.sqlite3
 
 *.log
+
+.vscode/

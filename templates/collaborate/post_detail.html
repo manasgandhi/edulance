@@ -1,133 +1,271 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}{{ post.title }} - Collaborate{% endblock %}
-
+{% block extra_css %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+          rel="stylesheet" />
+    <style>
+    .select2-container--open .select2-dropdown {
+        z-index: 2000; /* Higher than Bootstrap modal z-index (1060) */
+    }
+    .select2-container {
+        z-index: 2000; /* Ensure the container itself is above the modal */
+    }
+    </style>
+{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <!-- Messages Container -->
-            <div id="messages-container"></div>
-
-            <!-- Back Button -->
-            <div class="mb-4">
-                <a href="{% url 'collaborate:collaboration_list' %}" class="btn btn-outline-secondary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Collaborations
-                </a>
-            </div>
-
-            <!-- Post Details Card -->
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0">{{ post.title }}</h4>
-                        <span class="badge bg-light text-dark">{{ post.get_activity_type_display }}</span>
-                    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Messages Container -->
+                <div id="messages-container"></div>
+                <!-- Back Button -->
+                <div class="mb-4">
+                    <a href="{% url 'collaborate:collaboration_list' %}"
+                       class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Collaborations
+                    </a>
                 </div>
-                <div class="card-body">
-                    <!-- Author and Date -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <p class="text-muted mb-1">
-                                <i class="fas fa-user me-2"></i><strong>Created by:</strong> 
-                                {{ post.user.get_full_name|default:post.user.username }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="text-muted mb-1">
-                                <i class="fas fa-calendar me-2"></i><strong>Posted on:</strong> 
-                                {{ post.created_at|date:"F d, Y" }}
-                            </p>
+                <!-- Post Details Card -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">{{ post.title }}</h4>
+                            <span class="badge bg-light text-dark">{{ post.get_activity_type_display }}</span>
                         </div>
                     </div>
-
-                    <!-- Description -->
-                    <div class="mb-4">
-                        <h5 class="text-primary"><i class="fas fa-info-circle me-2"></i>Description</h5>
-                        <p class="text-muted">{{ post.description|linebreaks }}</p>
-                    </div>
-
-                    <!-- Required Skills -->
-                    {% if post.required_skills.all %}
-                    <div class="mb-4">
-                        <h5 class="text-primary"><i class="fas fa-tools me-2"></i>Required Skills</h5>
-                        <div class="d-flex flex-wrap gap-2">
-                            {% for skill in post.required_skills.all %}
-                                <span class="badge bg-primary rounded-pill fs-6">{{ skill.name }}</span>
-                            {% endfor %}
+                    <div class="card-body">
+                        <!-- Author and Date -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p class="text-muted mb-1">
+                                    <i class="fas fa-user me-2"></i><strong>Created by:</strong>
+                                    {{ post.user.get_full_name|default:post.user.username }}
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-muted mb-1">
+                                    <i class="fas fa-calendar me-2"></i><strong>Posted on:</strong>
+                                    {{ post.created_at|date:"F d, Y" }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    {% endif %}
-
-                    <!-- Deadline -->
-                    {% if post.deadline %}
-                    <div class="mb-4">
-                        <h5 class="text-primary"><i class="fas fa-clock me-2"></i>Deadline</h5>
-                        <p class="text-warning fs-5">
-                            <strong>{{ post.deadline|date:"F d, Y g:i A" }}</strong>
-                        </p>
-                    </div>
-                    {% endif %}
-
-                    <!-- Action Buttons -->
-                    <div class="d-flex gap-3 mt-4">
-                        {% if post.user != user %}
-                        <button class="btn btn-primary btn-lg join-team-btn" data-post-id="{{ post.id }}">
-                            <i class="fas fa-users me-2"></i>Join This Team
-                        </button>
-                        <button class="btn btn-outline-primary btn-lg" onclick="sharePost()">
-                            <i class="fas fa-share me-2"></i>Share
-                        </button>
-                        {% else %}
-                        <div class="alert alert-info d-flex align-items-center" role="alert">
-                            <i class="fas fa-info-circle me-2"></i>
-                            This is your post. You can manage it from your dashboard.
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <h5 class="text-primary">
+                                <i class="fas fa-info-circle me-2"></i>Description
+                            </h5>
+                            <p class="text-muted">{{ post.description|linebreaks }}</p>
                         </div>
+                        <!-- Required Skills -->
+                        {% if post.required_skills.all %}
+                            <div class="mb-4">
+                                <h5 class="text-primary">
+                                    <i class="fas fa-tools me-2"></i>Required Skills
+                                </h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    {% for skill in post.required_skills.all %}
+                                        <span class="badge bg-primary rounded-pill fs-6">{{ skill.name }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         {% endif %}
+                        <!-- Deadline -->
+                        {% if post.deadline %}
+                            <div class="mb-4">
+                                <h5 class="text-primary">
+                                    <i class="fas fa-clock me-2"></i>Deadline
+                                </h5>
+                                <p class="text-warning fs-5">
+                                    <strong>{{ post.deadline|date:"F d, Y g:i A" }}</strong>
+                                </p>
+                            </div>
+                        {% endif %}
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-3 mt-4">
+                            {% if post.user != user %}
+                                <button class="btn btn-primary btn-lg join-team-btn"
+                                        data-post-id="{{ post.id }}">
+                                    <i class="fas fa-users me-2"></i>Join This Team
+                                </button>
+                                <button class="btn btn-outline-primary btn-lg" onclick="sharePost()">
+                                    <i class="fas fa-share me-2"></i>Share
+                                </button>
+                            {% else %}
+                                <div class="alert alert-info d-flex align-items-center" role="alert">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    This is your post. You can manage it from your dashboard.
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
+                {% if post.user == user %}
+                    <button class="btn btn-warning btn-lg mt-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editPostModal">
+                        <i class="fas fa-edit me-2"></i>Edit Post
+                    </button>
+                    <div class="card mt-4 shadow-sm">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-users me-2"></i>Applicants
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                {% for applicant in post.applicants.all %}
+                                    <li class="list-group-item">
+                                        <strong>{{ applicant.get_full_name|default:applicant.username }}</strong>
+                                        - <a href="mailto:{{ applicant.email }}">{{ applicant.email }}</a>
+                                    </li>
+                                {% empty %}
+                                    <li class="list-group-item">No applicants yet.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- Contact Information -->
+                {% if post.user != user %}
+                    <div class="card mt-4 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-envelope me-2"></i>Contact Information
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2">
+                                <strong>Email:</strong>
+                                <a href="mailto:{{ post.user.email }}">{{ post.user.email }}</a>
+                            </p>
+                            {% if post.user.profile.phone %}
+                                <p class="mb-0">
+                                    <strong>Phone:</strong> {{ post.user.profile.phone }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
-
-            <!-- Contact Information -->
-            {% if post.user != user %}
-            <div class="card mt-4 shadow-sm">
-                <div class="card-header bg-success text-white">
-                    <h5 class="mb-0"><i class="fas fa-envelope me-2"></i>Contact Information</h5>
-                </div>
-                <div class="card-body">
-                    <p class="mb-2">
-                        <strong>Email:</strong> 
-                        <a href="mailto:{{ post.user.email }}">{{ post.user.email }}</a>
-                    </p>
-                    {% if post.user.profile.phone %}
-                    <p class="mb-0">
-                        <strong>Phone:</strong> {{ post.user.profile.phone }}
-                    </p>
-                    {% endif %}
+        </div>
+        <!-- Edit Post Modal -->
+        <div class="modal fade"
+             id="editPostModal"
+             tabindex="-1"
+             aria-labelledby="editPostModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="edit-post-form">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editPostModalLabel">Edit Post</h5>
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            <input type="hidden" id="post-id" value="{{ post.id }}">
+                            <div class="mb-3">
+                                <label for="edit-title" class="form-label">Title</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="edit-title"
+                                       value="{{ post.title }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-description" class="form-label">Description</label>
+                                <textarea class="form-control" id="edit-description" rows="4">{{ post.description }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-activity" class="form-label">Activity Type</label>
+                                <select class="form-select" id="edit-activity">
+                                    <option value="learning"
+                                            {% if post.activity_type == 'learning' %}selected{% endif %}>
+                                        Learning
+                                    </option>
+                                    <option value="hackathon"
+                                            {% if post.activity_type == 'hackathon' %}selected{% endif %}>
+                                        Hackathon
+                                    </option>
+                                    <option value="group_study"
+                                            {% if post.activity_type == 'group_study' %}selected{% endif %}>
+                                        Group Study
+                                    </option>
+                                    <option value="project"
+                                            {% if post.activity_type == 'project' %}selected{% endif %}>
+                                        Project
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-deadline" class="form-label">Deadline</label>
+                                <input type="datetime-local"
+                                       class="form-control"
+                                       id="edit-deadline"
+                                       value="{{ post.deadline|date:'Y-m-d\\TH:i' }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-skills" class="form-label">Skills Required</label>
+                                <select class="form-select" id="edit-skills" name="skills" multiple>
+                                    {% for skill in skills %}
+                                        <option value="{{ skill.id }}"
+                                                {% if skill in post.required_skills.all %}selected{% endif %}>
+                                            {{ skill.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <div class="form-text">Select one or more skills. Hold Ctrl/Cmd to select multiple.</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            {% endif %}
         </div>
     </div>
-</div>
+    {% block extra_js %}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Include Select2 CSS and JS -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+              rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="{% static 'js/collaborate.js' %}"></script>
+        <script>
+            $(document).ready(function () {
+                // Initialize Select2 on the skills select element
+                $('#edit-skills').select2({
+                    placeholder: "Select required skills",
+                    allowClear: true,
+                    width: '100%'
+                });
 
-{% block extra_js %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'js/collaborate.js' %}"></script>
-<script>
-function sharePost() {
-    if (navigator.share) {
-        navigator.share({
-            title: '{{ post.title }}',
-            text: '{{ post.description|truncatewords:20 }}',
-            url: window.location.href
-        });
-    } else {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            showMessage('Link copied to clipboard!', 'success');
-        });
-    }
-}
-</script>
-{% endblock %}
+                // Ensure pre-selected skills are applied
+                // This is handled by the 'selected' attribute in the template, but this ensures Select2 reflects it
+                let selectedSkills = [];
+                {% for skill in post.required_skills.all %}selectedSkills.push('{{ skill.id }}');{% endfor %}
+                $('#edit-skills').val(selectedSkills).trigger('change');
+            });
+
+            function sharePost() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: '{{ post.title }}',
+                        text: '{{ post.description|truncatewords:20 }}',
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        showMessage('Link copied to clipboard!', 'success');
+                    });
+                }
+            }
+        </script>
+        <script src="{% static 'js/collaborate.js' %}"></script>
+    {% endblock %}
 {% endblock %}

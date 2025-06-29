@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "social_django",
     "users",
-    "api",
     "collaborate",
 ]
 
