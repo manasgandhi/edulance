@@ -1,8 +1,8 @@
-
 from rest_framework import serializers
 from .models import CollaborationPost
 from users.serializers import SkillSerializer
 from users.models import Skill
+
 
 class CollaborationPostSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
@@ -16,35 +16,64 @@ class CollaborationPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = CollaborationPost
         fields = [
-            'id', 'user', 'title', 'description', 'activity_type', 
-            'activity_type_display', 'required_skills', 'skills', 
-            'deadline', 'is_active', 'created_at', 'updated_at', 'is_owner'
+            "id",
+            "user",
+            "title",
+            "description",
+            "activity_type",
+            "activity_type_display",
+            "required_skills",
+            "skills",
+            "deadline",
+            "is_active",
+            "created_at",
+            "updated_at",
+            "is_owner",
         ]
 
     def get_user(self, obj):
         return {
-            'username': obj.user.username,
-            'full_name': obj.user.get_full_name(),
-            'email': obj.user.email
+            "username": obj.user.username,
+            "full_name": obj.user.get_full_name(),
+            "email": obj.user.email,
         }
 
     def get_activity_type_display(self, obj):
         return obj.get_activity_type_display()
 
     def get_is_owner(self, obj):
-        request = self.context.get('request')
+        request = self.context.get("request")
         return request.user == obj.user if request else False
 
     def validate(self, data):
-        if not data.get('title') or not data.get('description') or not data.get('activity_type'):
-            raise serializers.ValidationError("Title, description, and activity type are required.")
-        
+        if (
+            not data.get("title")
+            or not data.get("description")
+            or not data.get("activity_type")
+        ):
+            raise serializers.ValidationError(
+                "Title, description, and activity type are required."
+            )
+
         return data
 
     def create(self, validated_data):
-        skills_data = validated_data.pop('skills', [])  # Extract skills data
+        skills_data = validated_data.pop("skills", [])  # Extract skills data
         post = CollaborationPost.objects.create(**validated_data)  # Create post
         if skills_data:
             skills = Skill.objects.filter(id__in=skills_data)  # Fetch Skill objects
             post.required_skills.set(skills)  # Set ManyToMany relationship
         return post
+
+    def update(self, instance, validated_data):
+        skills_data = validated_data.pop("skills", None)
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        if skills_data is not None:
+            skills = Skill.objects.filter(id__in=skills_data)
+            instance.required_skills.set(skills)
+
+        return instance

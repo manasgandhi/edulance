@@ -1,12 +1,25 @@
+$(document).ready(function () {
+    // Initialize Select2 for skills fields
+    // $('#skills, #edit-skills').select2({
+    //     placeholder: "Select required skills",
+    //     allowClear: true,
+    //     width: '100%',
+    //     dropdownParent: $('#editPostModal') // Attach dropdown to modal to fix positioning
+    // });
 
-$(document).ready(function() {
+    // Prevent modal from closing when clicking on Select2 dropdown
+    $(document).on('click', '.select2-container', function (e) {
+        e.stopPropagation(); // Stop click event from bubbling to modal backdrop
+    });
+
     // Create Post Form Submission
-    $('#createPostForm').on('submit', function(e) {
+    $('#createPostForm').on('submit', function (e) {
         e.preventDefault();
         e.stopImmediatePropagation();
         const $form = $(this);
         const $submitBtn = $('#submitBtn');
-        const originalBtnHtml = `<i class="fas fa-paper-plane me-2"></i>Create Post`
+        const originalBtnHtml = `<i class="fas fa-paper-plane me-2"></i>Create Post`;
+
         // Disable submit button
         $submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Creating...');
 
@@ -34,7 +47,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            success: function(response) {
+            success: function (response) {
                 showMessage('Post created successfully!', 'success');
                 $form[0].reset();
                 $('#skills').val(null).trigger('change'); // Reset Select2
@@ -45,19 +58,73 @@ $(document).ready(function() {
 
                 refreshTab(response.activity_type);
             },
-            complete: function() {
+            complete: function () {
                 // Re-enable button and reset original HTML
                 $submitBtn.prop('disabled', false).html(originalBtnHtml);
             },
-            error: function(xhr) {
-                const errors = xhr.responseJSON ? xhr.responseJSON : {error: 'An error occurred'};
+            error: function (xhr) {
+                const errors = xhr.responseJSON ? xhr.responseJSON : { error: 'An error occurred' };
+                showMessage(getErrorMessage(errors), 'danger');
+            }
+        });
+    });
+
+    // Edit Post Form Submission
+    $('#edit-post-form').on('submit', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const $form = $(this);
+        const $submitBtn = $form.find('button[type="submit"]');
+        const originalBtnHtml = `<i class="fas fa-save me-2"></i>Save Changes`;
+
+        // Disable submit button
+        $submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Saving...');
+
+        // Prepare form data
+        let deadlineValue = $form.find('#edit-deadline').val();
+        if (deadlineValue) {
+            // Convert deadline to ISO 8601 format with UTC timezone (Z)
+            const deadlineDate = new Date(deadlineValue);
+            deadlineValue = deadlineDate.toISOString();
+        }
+
+        const formData = {
+            title: $form.find('#edit-title').val(),
+            description: $form.find('#edit-description').val(),
+            activity_type: $form.find('#edit-activity').val(),
+            skills: $form.find('#edit-skills').val() || [], // Ensure skills is an array, even if empty
+            deadline: deadlineValue || null
+        };
+
+        const postId = $form.find('#post-id').val();
+
+        $.ajax({
+            url: `/collaborate/api/posts/${postId}/`,
+            type: 'PATCH',
+            data: JSON.stringify(formData),
+            contentType: 'application/json',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            success: function (response) {
+                showMessage('Post updated successfully!', 'success');
+                $('#editPostModal').modal('hide');
+                // Refresh the current page to reflect changes
+                window.location.reload();
+            },
+            complete: function () {
+                // Re-enable button and reset original HTML
+                $submitBtn.prop('disabled', false).html(originalBtnHtml);
+            },
+            error: function (xhr) {
+                const errors = xhr.responseJSON ? xhr.responseJSON : { error: 'An error occurred' };
                 showMessage(getErrorMessage(errors), 'danger');
             }
         });
     });
 
     // Join Team Button Click
-    $(document).on('click', '.join-team-btn', function() {
+    $(document).on('click', '.join-team-btn', function () {
         const $btn = $(this);
         const postId = $btn.data('post-id');
         const originalHtml = $btn.html();
@@ -70,14 +137,14 @@ $(document).ready(function() {
             headers: {
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            success: function(response) {
+            success: function (response) {
                 showMessage(response.message, 'success');
             },
-            error: function(xhr) {
-                const errors = xhr.responseJSON ? xhr.responseJSON : {error: 'An error occurred'};
+            error: function (xhr) {
+                const errors = xhr.responseJSON ? xhr.responseJSON : { error: 'An error occurred' };
                 showMessage(getErrorMessage(errors), 'danger');
             },
-            complete: function() {
+            complete: function () {
                 $btn.prop('disabled', false).html(originalHtml);
             }
         });
@@ -85,19 +152,19 @@ $(document).ready(function() {
 
     // Function to show messages
     function showMessage(message, type) {
-    const messageHtml = `
-        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    `;
-    $('#messages-container').html(messageHtml).hide().fadeIn(500); // Animate appearance
+        const messageHtml = `
+            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        $('#messages-container').html(messageHtml).hide().fadeIn(500); // Animate appearance
 
-    setTimeout(() => {
-        $('.alert').fadeOut(500, function () {
-            $(this).remove();
-        });
-    }, 5000);
+        setTimeout(() => {
+            $('.alert').fadeOut(500, function () {
+                $(this).remove();
+            });
+        }, 5000);
     }
 
     // Function to get error message from response
@@ -112,7 +179,7 @@ $(document).ready(function() {
         $.ajax({
             url: `/collaborate/api/posts/?activity_type=${tabId}`,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 const $tabContent = $(`#${tabId}`);
                 if (response.results.length === 0) {
                     $tabContent.html(`
@@ -144,7 +211,7 @@ $(document).ready(function() {
             groupstudy: 'users-cog',
             project: 'project-diagram'
         };
-        return icons[tabId];
+        return icons[tabId] || 'book-open';
     }
 
     // Helper function to get tab title
@@ -155,7 +222,7 @@ $(document).ready(function() {
             groupstudy: 'Study Groups',
             project: 'Project Collaborations'
         };
-        return titles[tabId];
+        return titles[tabId] || 'Collaborations';
     }
 
     // Function to generate post card HTML

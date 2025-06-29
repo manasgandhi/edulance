@@ -5,17 +5,20 @@ from users.models import User, Skill
 
 class CollaborationPost(models.Model):
     ACTIVITY_TYPES = (
-        ('learning', 'Learning'),
-        ('hackathon', 'Hackathon'),
-        ('group_study', 'Group Study'),
-        ('project', 'Project'),
+        ("learning", "Learning"),
+        ("hackathon", "Hackathon"),
+        ("group_study", "Group Study"),
+        ("project", "Project"),
     )
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='collaboration_posts')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="collaboration_posts"
+    )
     title = models.CharField(max_length=200)
     description = models.TextField()
     activity_type = models.CharField(max_length=20, choices=ACTIVITY_TYPES)
-    required_skills = models.ManyToManyField(Skill, related_name='posts', blank=True)
+    applicants = models.ManyToManyField(User, related_name="applied_posts", blank=True)
+    required_skills = models.ManyToManyField(Skill, related_name="posts", blank=True)
     deadline = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
