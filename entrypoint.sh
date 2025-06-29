@@ -53,12 +53,20 @@ while True:
         time.sleep(2)
 EOF
 
-echo "Applying database migrations..."
-if ! python manage.py migrate; then
-    echo "Error: Database migrations failed"
-    exit 1
+# echo "Applying database migrations..."
+# if ! python manage.py migrate; then
+#     echo "Error: Database migrations failed"
+#     exit 1
+# fi
+if [ "$RUN_MIGRATIONS" = "true" ]; then
+  echo "Applying database migrations..."
+  if ! python manage.py migrate; then
+      echo "Error: Database migrations failed"
+      exit 1
+  fi
+else
+  echo "Skipping migrations for this container"
 fi
-
 # Optional: Collect static files (if needed)
 # python manage.py collectstatic --no-input
 

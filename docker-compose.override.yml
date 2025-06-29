@@ -11,6 +11,8 @@ services:
       - redis
     env_file:
       - .env.docker
+    environment:
+      - RUN_MIGRATIONS=true
     command: python manage.py runserver 0.0.0.0:8000
 
   celery:
@@ -23,6 +25,8 @@ services:
       - redis
     env_file:
       - .env.docker
+    environment:
+      - RUN_MIGRATIONS=false
   beat:
     image: edulance:v-combined
     volumes:
@@ -33,6 +37,8 @@ services:
       - redis
     env_file:
       - .env.docker
+    environment:
+      - RUN_MIGRATIONS=false
 
   db:
     image: postgres:15
