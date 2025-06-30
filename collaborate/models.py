@@ -7,7 +7,6 @@ class CollaborationPost(models.Model):
     ACTIVITY_TYPES = (
         ("learning", "Learning"),
         ("hackathon", "Hackathon"),
-        ("group_study", "Group Study"),
         ("project", "Project"),
     )
 

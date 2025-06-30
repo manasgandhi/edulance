@@ -124,7 +124,9 @@ $(document).ready(function () {
     });
 
     // Join Team Button Click
-    $(document).on('click', '.join-team-btn', function () {
+    $(document).on('click', '.join-team-btn', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
         const $btn = $(this);
         const postId = $btn.data('post-id');
         const originalHtml = $btn.html();
@@ -139,6 +141,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 showMessage(response.message, 'success');
+
             },
             error: function (xhr) {
                 const errors = xhr.responseJSON ? xhr.responseJSON : { error: 'An error occurred' };
@@ -146,6 +149,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $btn.prop('disabled', false).html(originalHtml);
+
             }
         });
     });
@@ -208,7 +212,6 @@ $(document).ready(function () {
         const icons = {
             learning: 'book-open',
             hackathon: 'code',
-            groupstudy: 'users-cog',
             project: 'project-diagram'
         };
         return icons[tabId] || 'book-open';
@@ -219,7 +222,6 @@ $(document).ready(function () {
         const titles = {
             learning: 'Learning Opportunities',
             hackathon: 'Hackathon Projects',
-            groupstudy: 'Study Groups',
             project: 'Project Collaborations'
         };
         return titles[tabId] || 'Collaborations';

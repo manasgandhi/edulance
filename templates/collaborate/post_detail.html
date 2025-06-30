@@ -101,11 +101,18 @@
                     </div>
                 </div>
                 {% if post.user == user %}
-                    <button class="btn btn-warning btn-lg mt-2"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editPostModal">
-                        <i class="fas fa-edit me-2"></i>Edit Post
-                    </button>
+                    <div class="d-flex gap-3 mt-2">
+                        <button class="btn btn-warning btn-lg"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editPostModal">
+                            <i class="fas fa-edit me-2"></i>Edit Post
+                        </button>
+                        <button class="btn btn-danger btn-lg"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deletePostModal">
+                            <i class="fas fa-trash me-2"></i>Delete Post
+                        </button>
+                    </div>
                     <div class="card mt-4 shadow-sm">
                         <div class="card-header bg-info text-white">
                             <h5 class="mb-0">
@@ -190,10 +197,6 @@
                                             {% if post.activity_type == 'hackathon' %}selected{% endif %}>
                                         Hackathon
                                     </option>
-                                    <option value="group_study"
-                                            {% if post.activity_type == 'group_study' %}selected{% endif %}>
-                                        Group Study
-                                    </option>
                                     <option value="project"
                                             {% if post.activity_type == 'project' %}selected{% endif %}>
                                         Project
@@ -228,8 +231,52 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Post Modal -->
+        <div class="modal fade"
+             id="deletePostModal"
+             tabindex="-1"
+             aria-labelledby="deletePostModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="deletePostModalLabel">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Delete Post
+                        </h5>
+                        <button type="button"
+                                class="btn-close btn-close-white"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                            <i class="fas fa-exclamation-triangle me-3"></i>
+                            <div>
+                                <strong>Warning!</strong> This action cannot be undone.
+                            </div>
+                        </div>
+                        <p>Are you sure you want to delete the post <strong>"{{ post.title }}"</strong>?</p>
+                        <p class="text-muted">This will permanently remove:</p>
+                        <ul class="text-muted">
+                            <li>The post and all its details</li>
+                            <li>All applicant information</li>
+                            <li>Any associated data</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger" id="confirm-delete-btn" data-post-id="{{ post.id }}">
+                            <i class="fas fa-trash me-2"></i>Delete Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% block extra_js %}
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Include Select2 CSS and JS -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
@@ -251,7 +298,32 @@
                 {% for skill in post.required_skills.all %}selectedSkills.push('{{ skill.id }}');{% endfor %}
                 $('#edit-skills').val(selectedSkills).trigger('change');
             });
-
+            
+            // Delete post functionality
+                $('#confirm-delete-btn').on('click', function() {
+                    const postId = $(this).data('post-id');
+                    
+                    // Show loading state
+                    $(this).prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Deleting...');
+                    
+                    // Make AJAX request to delete the post using ViewSet endpoint
+                    $.ajax({
+                        url: `/collaborate/api/posts/${postId}/`,  // DRF ViewSet delete endpoint
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRFToken': $('[name=csrfmiddlewaretoken]').val(),
+                            'Content-Type': 'application/json',
+                        },
+                        success: function(response) {
+                            $('#deletePostModal').modal('hide');
+                            window.location.href = "{% url 'collaborate:collaboration_list' %}";
+                        },
+                        error: function (xhr) {
+                            const errors = xhr.responseJSON ? xhr.responseJSON : { error: 'An error occurred' };
+                            showMessage(getErrorMessage(errors), 'danger');
+                        },
+                        });
+                });
             function sharePost() {
                 if (navigator.share) {
                     navigator.share({
@@ -266,6 +338,5 @@
                 }
             }
         </script>
-        <script src="{% static 'js/collaborate.js' %}"></script>
     {% endblock %}
 {% endblock %}

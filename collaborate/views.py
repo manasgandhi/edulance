@@ -15,23 +15,47 @@ import json
 
 @login_required
 def home(request):
-    all_posts = CollaborationPost.objects.filter(is_active=True).order_by("-created_at")
+    user_skills = request.user.skills.all()
+    user_skill_id = set()
+    for skill in user_skills:
+        user_skill_id.add(skill.id)
+
+    all_posts = CollaborationPost.objects.filter(is_active=True)
+
+    post_match_list = []
+    for post in all_posts:
+        match_skill_count = 0
+        for skill in post.required_skills.all():
+            if skill.id in user_skill_id:
+                match_skill_count += 1
+        post_match_list.append((post, match_skill_count))
+
+    # Sort posts by match count in descending order
+    sorted_posts = [post for post, _ in sorted(post_match_list, key=lambda x: x[1], reverse=True)]
+
+    # Categorize sorted posts by activity type
     posts_by_type = {
-        "learning": all_posts.filter(activity_type="learning"),
-        "hackathon": all_posts.filter(activity_type="hackathon"),
-        "group_study": all_posts.filter(activity_type="group_study"),
-        "project": all_posts.filter(activity_type="project"),
+        "learning": [p for p in sorted_posts if p.activity_type == "learning"],
+        "hackathon": [p for p in sorted_posts if p.activity_type == "hackathon"],
+        "project": [p for p in sorted_posts if p.activity_type == "project"],
     }
+
+    # Calculate counts for each type
+    posts_counts = {
+        "learning": len(posts_by_type["learning"]),
+        "hackathon": len(posts_by_type["hackathon"]),
+        "project": len(posts_by_type["project"]),
+    }
+
+    # Prepare skills for frontend
     skills = Skill.objects.all()
-    # Serialize skills to match Select2 expected format
     skills_serialized = SkillSerializer(skills, many=True).data
-    skills_data = [
-        {"id": skill["id"], "text": skill["name"]} for skill in skills_serialized
-    ]
-    # Convert to JSON
+    skills_data = [{"id": skill["id"], "text": skill["name"]} for skill in skills_serialized]
     skills_json = json.dumps(skills_data)
+
     context = {
         "posts_by_type": posts_by_type,
+        "posts_counts": posts_counts,
         "total_posts": all_posts.count(),
         "skills_json": skills_json,
     }
@@ -72,6 +96,63 @@ class CollaborationPostViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(activity_type=activity_type)
         return queryset.order_by("-created_at")
 
+    def destroy(self, request, *args, **kwargs):
+        """
+        Custom delete method with validation
+        """
+        try:
+            instance = self.get_object()
+            
+            # Check if user owns the post
+            if instance.user != request.user:
+                return Response(
+                    {'detail': 'You do not have permission to delete this post.'}, 
+                    status=status.HTTP_403_FORBIDDEN
+                )
+            
+            # Optional: Check if there are applicants (remove this if you want to allow deletion with applicants)
+            # applicants_count = instance.applicants.count()
+            # if applicants_count > 0:
+            #     for email in applicants_emails:
+            #         subject = f"Collaboration Post Deleted: {instance.title}"
+            #         message = f"""
+            #         Hi there,
+
+            #         The collaboration post "{instance.title}" that you applied to has been deleted by the creator.
+
+            #         We apologize for any inconvenience this may cause.
+
+            #         Best regards,
+            #         Edulance Team
+            #         """
+            #         try:
+            #             send_asynchronous_email_task(subject, message, email)
+            #         except Exception as email_error:
+            #             logger.error(f"Failed to send deletion notification to {email}: {email_error}")
+            
+            # Soft delete by setting is_active to False (recommended)
+            instance.is_active = False
+            instance.save()
+            
+            # Or hard delete (uncomment the line below and comment the lines above)
+            # instance.delete()
+            
+            return Response(
+                {'detail': 'Post deleted successfully.'}, 
+                status=status.HTTP_200_OK
+            )
+            
+        except CollaborationPost.DoesNotExist:
+            return Response(
+                {'detail': 'Post not found.'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {'detail': 'An error occurred while deleting the post.'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        
     @action(detail=True, methods=["post"])
     def join(self, request, pk=None):
         try:
