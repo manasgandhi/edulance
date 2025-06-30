@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load collab_tags %}
 {% block title %}{{ post.title }} - Collaborate{% endblock %}
 {% block extra_css %}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
@@ -84,10 +85,16 @@
                         <!-- Action Buttons -->
                         <div class="d-flex gap-3 mt-4">
                             {% if post.user != user %}
-                                <button class="btn btn-primary btn-lg join-team-btn"
-                                        data-post-id="{{ post.id }}">
-                                    <i class="fas fa-users me-2"></i>Join This Team
-                                </button>
+                                {% if post|has_applied:user %}
+                                    <button class="btn disabled btn-success btn-lg" data-post-id="{{ post.id }}">
+                                        <i class="fas fa-users me-2"></i>Already applied
+                                    </button>
+                                {% else %}
+                                    <button class="btn btn-primary btn-lg join-team-btn"
+                                            data-post-id="{{ post.id }}">
+                                        <i class="fas fa-users me-2"></i>Join This Team
+                                    </button>
+                                {% endif %}
                                 <button class="btn btn-outline-primary btn-lg" onclick="sharePost()">
                                     <i class="fas fa-share me-2"></i>Share
                                 </button>
@@ -231,59 +238,63 @@
             </div>
         </div>
     </div>
-
     <!-- Delete Post Modal -->
-        <div class="modal fade"
-             id="deletePostModal"
-             tabindex="-1"
-             aria-labelledby="deletePostModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="deletePostModalLabel">
-                            <i class="fas fa-exclamation-triangle me-2"></i>Delete Post
-                        </h5>
-                        <button type="button"
-                                class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-warning d-flex align-items-center" role="alert">
-                            <i class="fas fa-exclamation-triangle me-3"></i>
-                            <div>
-                                <strong>Warning!</strong> This action cannot be undone.
-                            </div>
+    <div class="modal fade"
+         id="deletePostModal"
+         tabindex="-1"
+         aria-labelledby="deletePostModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deletePostModalLabel">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Delete Post
+                    </h5>
+                    <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <i class="fas fa-exclamation-triangle me-3"></i>
+                        <div>
+                            <strong>Warning!</strong> This action cannot be undone.
                         </div>
-                        <p>Are you sure you want to delete the post <strong>"{{ post.title }}"</strong>?</p>
-                        <p class="text-muted">This will permanently remove:</p>
-                        <ul class="text-muted">
-                            <li>The post and all its details</li>
-                            <li>All applicant information</li>
-                            <li>Any associated data</li>
-                        </ul>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="fas fa-times me-2"></i>Cancel
-                        </button>
-                        <button type="button" class="btn btn-danger" id="confirm-delete-btn" data-post-id="{{ post.id }}">
-                            <i class="fas fa-trash me-2"></i>Delete Post
-                        </button>
-                    </div>
+                    <p>
+                        Are you sure you want to delete the post <strong>"{{ post.title }}"</strong>?
+                    </p>
+                    <p class="text-muted">This will permanently remove:</p>
+                    <ul class="text-muted">
+                        <li>The post and all its details</li>
+                        <li>All applicant information</li>
+                        <li>Any associated data</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancel
+                    </button>
+                    <button type="button"
+                            class="btn btn-danger"
+                            id="confirm-delete-btn"
+                            data-post-id="{{ post.id }}">
+                        <i class="fas fa-trash me-2"></i>Delete Post
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    {% block extra_js %}
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Include Select2 CSS and JS -->
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-              rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <script src="{% static 'js/collaborate.js' %}"></script>
-        <script>
+</div>
+{% block extra_js %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Select2 CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+          rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{% static 'js/collaborate.js' %}"></script>
+    <script>
             $(document).ready(function () {
                 // Initialize Select2 on the skills select element
                 $('#edit-skills').select2({
@@ -337,6 +348,6 @@
                     });
                 }
             }
-        </script>
-    {% endblock %}
+    </script>
+{% endblock %}
 {% endblock %}
