@@ -9,6 +9,8 @@ services:
       - redis
     env_file:
       - .env.docker
+    environment:
+      - RUN_MIGRATIONS=true
     command: python manage.py runserver 0.0.0.0:8000
 
   celery:
@@ -19,31 +21,20 @@ services:
       - redis
     env_file:
       - .env.docker
+    environment:
+      - RUN_MIGRATIONS=false
   beat:
     image: edulance:v-combined
     command: celery -A edulance_root beat --loglevel=INFO
     depends_on:
       - db
       - redis
+    environment:
+      - RUN_MIGRATIONS=false
     env_file:
       - .env.docker
-
-  db:
-    image: postgres:15
-    environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
   redis:
     image: redis:7
     ports:
       - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-volumes:
-  postgres_data:
-  redis_data:

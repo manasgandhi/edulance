@@ -16,7 +16,13 @@ RUN uv venv /opt/venv && \
     . /opt/venv/bin/activate && \
     uv pip install -r requirements.txt
 
-ENV PATH="/opt/venv/bin:$PATH"
+FROM python:3.13-slim-bookworm AS production
+
+WORKDIR /app
+COPY . .
+COPY --from=builder /app/.venv .venv
+
+ENV PATH="/app/.venv/bin:$PATH"
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
