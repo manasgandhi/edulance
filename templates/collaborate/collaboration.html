@@ -151,28 +151,21 @@
             <button class="nav-link" id="learning-tab" data-bs-toggle="tab" data-bs-target="#learning" type="button"
                 role="tab" aria-controls="learning" aria-selected="false">
                 <i class="fas fa-book-open me-2"></i>Learning
-                <span class="badge bg-light text-dark ms-1">{{ posts_by_type.learning.count }}</span>
+                <span class="badge bg-light text-dark ms-1">{{ posts_counts.learning }}</span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="hackathon-tab" data-bs-toggle="tab" data-bs-target="#hackathon"
                 type="button" role="tab" aria-controls="hackathon" aria-selected="true">
                 <i class="fas fa-code me-2"></i>Hackathon
-                <span class="badge bg-light text-dark ms-1">{{ posts_by_type.hackathon.count }}</span>
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="group_study-tab" data-bs-toggle="tab" data-bs-target="#groupstudy" type="button"
-                role="tab" aria-controls="groupstudy" aria-selected="false">
-                <i class="fas fa-users-cog me-2"></i>Group Study
-                <span class="badge bg-light text-dark ms-1">{{ posts_by_type.group_study.count }}</span>
+                <span class="badge bg-light text-dark ms-1">{{ posts_counts.hackathon }}</span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="project-tab" data-bs-toggle="tab" data-bs-target="#project" type="button"
                 role="tab" aria-controls="project" aria-selected="false">
                 <i class="fas fa-project-diagram me-2"></i>Project
-                <span class="badge bg-light text-dark ms-1">{{ posts_by_type.project.count }}</span>
+                <span class="badge bg-light text-dark ms-1">{{ posts_counts.project }}</span>
             </button>
         </li>
     </ul>
@@ -213,22 +206,6 @@
             {% endif %}
         </div>
 
-        <!-- Group Study Tab -->
-        <div class="tab-pane fade" id="groupstudy" role="tabpanel" aria-labelledby="groupstudy-tab">
-            {% if posts_by_type.group_study %}
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-                    {% for post in posts_by_type.group_study %}
-                        {% include "collaborate/post.html" %}
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-users-cog"></i>
-                    <h4>Study Groups</h4>
-                    <p>No group study sessions available yet. Create one to start learning together!</p>
-                </div>
-            {% endif %}
-        </div>
 
         <!-- Project Tab -->
         <div class="tab-pane fade" id="project" role="tabpanel" aria-labelledby="project-tab">
@@ -273,7 +250,6 @@
                             <option value="">Select activity type</option>
                             <option value="learning">Learning</option>
                             <option value="hackathon">Hackathon</option>
-                            <option value="group_study">Group Study</option>
                             <option value="project">Project</option>
                         </select>
                     </div>

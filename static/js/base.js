@@ -35,33 +35,6 @@ $.ajaxSetup({
     }
 });
 
-// Show notification function
-function showNotification(message, type = 'info') {
-    const toast = `
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <strong class="me-auto">
-                            ${type === 'error' ? '<i class="fas fa-exclamation-circle text-danger me-2"></i>Error' : ''}
-                            ${type === 'success' ? '<i class="fas fa-check-circle text-success me-2"></i>Success' : ''}
-                            ${type === 'warning' ? '<i class="fas fa-exclamation-triangle text-warning me-2"></i>Warning' : ''}
-                            ${type === 'info' ? '<i class="fas fa-info-circle text-info me-2"></i>Info' : ''}
-                        </strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        ${message}
-                    </div>
-                </div>
-            `;
-
-    $('.toast-container').append(toast);
-
-    // Remove toast after 5 seconds
-    setTimeout(function () {
-        $('.toast-container .toast').first().remove();
-    }, 5000);
-}
-
 // Navbar scroll effect
 $(window).scroll(function () {
     if ($(window).scrollTop() > 50) {

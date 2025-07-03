@@ -11,15 +11,14 @@ $(document).ready(function () {
             <div class="toast toast-container ${type === 'success' ? 'toast-success' : 'toast-error'}" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header mb-0">
                     <strong class="me-auto">${type === 'success' ? 'Success' : 'Error'}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">
                     ${message}
                 </div>
             </div>`;
         $('body').append(toastHtml);
-        $('.toast').toast({ delay: 1800000 }).toast('show');
-        // setTimeout(() => $('.toast').remove(), 5500);
+        $('.toast').toast({ delay: 5000 }).toast('show');
+        setTimeout(() => $('.toast').remove(), 5500);
     }
 
     $('#profile_picture').change(function (e) {
@@ -67,7 +66,7 @@ $(document).ready(function () {
         }));
         var updateSkillsUrl = $('#updateSkillsButton').data('url');
 
-    
+
         $.ajax({
             url: updateSkillsUrl,
             type: 'POST',
