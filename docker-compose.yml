@@ -5,7 +5,6 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
       - redis
     env_file:
       - .env.docker
@@ -17,7 +16,6 @@ services:
     image: edulance:v-combined
     command: celery -A edulance_root worker --loglevel=INFO
     depends_on:
-      - db
       - redis
     env_file:
       - .env.docker
@@ -27,7 +25,6 @@ services:
     image: edulance:v-combined
     command: celery -A edulance_root beat --loglevel=INFO
     depends_on:
-      - db
       - redis
     environment:
       - RUN_MIGRATIONS=false

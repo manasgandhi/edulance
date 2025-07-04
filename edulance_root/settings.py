@@ -94,7 +94,10 @@ DATABASES = {
         "PASSWORD": os.getenv("DB_PASSWORD"),
         "HOST": os.getenv("DB_HOST"),
         "PORT": os.getenv("DB_PORT"),
-        "OPTIONS": json.loads(os.getenv("DB_OPTIONS", "{}")),
+        "OPTIONS": {
+            "sslmode": "require",
+            "sslrootcert": os.path.join(BASE_DIR, os.getenv("CERT_PATH")),
+        },
     }
 }
 

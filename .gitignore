@@ -22,6 +22,8 @@ static_root/
 
 .DS_Store
 
+*.pem
+
 *.rdb
 
 *.sqlite3
